@@ -1,34 +1,41 @@
-<form method="post" id="frm-buscar-matriculas">
+<form method="post" id="frm-buscar-alquiler">
     <div class="card text-white bg-dark mb-3" style="max-width: 48rem;">
         <div class="card-header">
-            BUSQUEDA DE MATRICULA
+            BUSQUEDA DE ALQUILER
 
-            <button type="button" id="btn-close-buscar-matriculas" class="close" aria-label="Close">
+            <button type="button" id="btn-close-buscar-alquiler" class="close" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
         <div class="card-body">
-            <table id="tbl-buscar-matriculas" class="table-striped table-dark table-bordered table-hover">
+            <table id="tbl-buscar-alquiler" class="table-striped table-dark table-bordered table-hover">
                 <thead>
                     <tr>
                         <th colspan="3">
-                            <input type="text" v-model="valor" v-on:keyup="buscarMatriculas" placeholder="codigo, nombre, dui o nit" class="form-control">
+                            <input type="text" v-model="valor" v-on:keyup="buscarAlquiler"
+                                placeholder="nombre, pelicula o fecha" class="form-control">
                         </th>
                     </tr>
                     <tr>
-                        <th>PERIODO</th>
-                        <th>ALUMNNO</th> 
-                        <th>FECHA MATRICULA</th>
+                        <th>CLIENTE</th>
+                        <th>PELICULA</th>
+                        <th>FECHA PEDIDO</th>
+                        <th>FECHA DEVOLUCION</th>
+                        <th>VALOR</th>
                         <th> </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="mi_matricula in mis_matriculas" :key="mi_matricula.idMatricula" v-on:click="modificarMatricula(mi_matricula)" >
-                        <td>{{ mi_matricula.periodo.label }}</td>
-                        <td>{{ mi_matricula.alumno.label }}</td>
-                        <td>{{ mi_matricula.f }}</td>
+                    <tr v-for="mi_alquiler in mis_alquileres" :key="mi_alquiler.idAlquiler"
+                        v-on:click="modificarAlquiler(mi_alquiler)">
+                        <td>{{ mi_alquiler.cliente.label }}</td>
+                        <td>{{ mi_alquiler.pelicula.label }}</td>
+                        <td>{{ mi_alquiler.fechaPrestamo }}</td>
+                        <td>{{ mi_alquiler.fechaDevolucion }}</td>
+                        <td>{{ mi_alquiler.valor }}</td>
                         <td>
-                            <input v-on:click="eliminarMatricula(mi_matricula.idMatricula)" type="button" class="btn btn-outline-danger text-white" value="del">
+                            <input v-on:click="eliminarAlquiler(mi_alquiler.idAlquiler)" type="button"
+                                class="btn btn-outline-danger text-white" value="del">
                         </td>
                     </tr>
                 </tbody>
@@ -36,4 +43,4 @@
         </div>
     </div>
 </form>
-<script src="public/vistas/matriculas/buscar-matriculas.js"></script>
+<script src="public/vistas/alquiler/buscar-alquiler.js"></script>

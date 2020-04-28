@@ -6,21 +6,21 @@ var appalquiler = new Vue({
         alquiler: {
             idAlquiler: 0,
             accion: 'nuevo',
-            clientes: {
-                idCliente: 0,
-                nombre: ''
+            cliente: {
+                id: 0,
+                label: ''
             },
-            peliculas: {
-                idPelicula: 0,
-                descripcion: ''
+            pelicula: {
+                id: 0,
+                label: ''
             },
             fechaPrestamo: '',
             fechaDevolucion: '',
             valor: '',
             msg: ''
         },
-        cliente: {},
-        pelicula: {}
+        clientes: {},
+        peliculas: {}
     },
     methods: {
         guardarAlquiler() {
@@ -40,8 +40,8 @@ var appalquiler = new Vue({
     },
     created() {
         fetch(`private/Modulos/alquiler/procesos.php?proceso=traer_peliculas_clientes&alquiler=''`).then(resp => resp.json()).then(resp => {
-            this.cliente = resp.clientes;
-            this.pelicula = resp.peliculas;
+            this.clientes = resp.clientes;
+            this.peliculas = resp.peliculas;
         });
     }
 });

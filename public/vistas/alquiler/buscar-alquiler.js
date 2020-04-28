@@ -1,26 +1,26 @@
-var appbuscar_matriculas = new Vue({
-    el: '#frm-buscar-matriculas',
-    data:{
-        mis_matriculas:[],
-        valor:''
+var appbuscar_alquiler = new Vue({
+    el: '#frm-buscar-alquiler',
+    data: {
+        mis_alquileres: [],
+        valor: ''
     },
-    methods:{
-        buscarMatriculas(){
-            fetch(`private/Modulos/matriculas/procesos.php?proceso=buscarMatricula&matricula=${this.valor}`).then( resp=>resp.json() ).then(resp=>{ 
-                this.mis_matriculas = resp;
+    methods: {
+        buscarAlquiler() {
+            fetch(`private/Modulos/alquiler/procesos.php?proceso=buscarAlquiler&alquiler=${this.valor}`).then(resp => resp.json()).then(resp => {
+                this.mis_alquileres = resp;
             });
         },
-        modificarMatricula(matricula){
-            appmatriculas.matricula = matricula;
-            appmatriculas.matricula.accion = 'modificar';
+        modificarAlquiler(alquiler) {
+            appalquiler.alquiler = alquiler;
+            appalquiler.alquiler.accion = 'modificar';
         },
-        eliminarMatricula(idMatricula){
-            fetch(`private/Modulos/matriculas/procesos.php?proceso=eliminarMatricula&matricula=${idMatricula}`).then( resp=>resp.json() ).then(resp=>{
-                this.buscarMatriculas();
+        eliminarAlquiler(idAlquiler) {
+            fetch(`private/Modulos/alquiler/procesos.php?proceso=eliminarAlquiler&alquiler=${idAlquiler}`).then(resp => resp.json()).then(resp => {
+                this.buscarAlquiler();
             });
         }
     },
-    created(){
-        this.buscarMatriculas();
+    created() {
+        this.buscarAlquiler();
     }
 });

@@ -25,11 +25,20 @@ class alquiler
     }
     private function validar_datos()
     {
-        if (empty($this->datos['clientes']['id'])) {
+        if (empty($this->datos['cliente']['id'])) {
             $this->respuesta['msg'] = 'por favor ingrese un nombre';
         }
-        if (empty($this->datos['peliculas']['id'])) {
+        if (empty($this->datos['pelicula']['id'])) {
             $this->respuesta['msg'] = 'por favor ingrese una pelicula';
+        }
+        if (empty($this->datos['fechaPrestamo'])) {
+            $this->respuesta['msg'] = 'por favor ingrese fecha de prestamo';
+        }
+        if (empty($this->datos['fechaDevolucion'])) {
+            $this->respuesta['msg'] = 'por favor ingrese fecha de devolucion';
+        }
+        if (empty($this->datos['valor'])) {
+            $this->respuesta['msg'] = 'por favor ingrese el valor';
         }
         $this->almacenar_alquiler();
     }
@@ -38,9 +47,9 @@ class alquiler
         if ($this->respuesta['msg'] === 'correcto') {
             if ($this->datos['accion'] === 'nuevo') {
                 $this->db->consultas('
-                    INSERT INTO alquiler (idCliente,idPelicula,fechaPrestamo,fecgaDevolucion,valor) VALUES(
-                        "' . $this->datos['clientes']['id'] . '",
-                        "' . $this->datos['peliculas']['id'] . '",
+                    INSERT INTO alquiler (idCliente,idPelicula,fechaPrestamo,fechaDevolucion,valor) VALUES(
+                        "' . $this->datos['cliente']['id'] . '",
+                        "' . $this->datos['pelicula']['id'] . '",
                         "' . $this->datos['fechaPrestamo'] . '",
                         "' . $this->datos['fechaDevolucion'] . '",
                         "' . $this->datos['valor'] . '"
@@ -50,11 +59,11 @@ class alquiler
             } else if ($this->datos['accion'] === 'modificar') {
                 $this->db->consultas('
                     UPDATE alquiler SET
-                        idCliente        = "' . $this->datos['clientes']['id'] . '",
-                        idPelicula       = "' . $this->datos['peliculas']['id'] . '",
+                        idCliente        = "' . $this->datos['cliente']['id'] . '",
+                        idPelicula       = "' . $this->datos['pelicula']['id'] . '",
                         fechaPrestamo    = "' . $this->datos['fechaPrestamo'] . '",
                         fechaDevolucion  = "' . $this->datos['fechaDevolucion'] . '",
-                        valor            = "' . $this->datos['valor'] . '",
+                        valor            = "' . $this->datos['valor'] . '"
                     WHERE idAlquiler    = "' . $this->datos['idAlquiler'] . '"
                 ');
                 $this->respuesta['msg'] = 'Registro actualizado correctamente';
