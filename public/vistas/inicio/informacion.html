@@ -54,9 +54,9 @@
                 </div>
             </div>
         </div>
+        
         <!--Agregar Datos-->
-        <div class="card bg-light mb-3" style="max-width: 48rem;" v-on:submit.prevent="guardarInformacion"
-            id="frm-informacion" v-on:reset="LimpiarDatos">
+        <div class="card bg-light mb-3" style="max-width: 48rem;" id="frm-informacion">
             <div class="card-header">
                 Agregar Informacion Financiera
             </div>
@@ -81,8 +81,8 @@
                 </div>
                 <div class="row p-2">
                     <div class="col-12 text-center">
-                        <input id="btnGuardarInformacion" type="submit" class="btn btn-primary" value="Guardar">
-                        <input type="reset" class="btn btn-warning" value="Limpiar">
+                        <input type="button" class="btn btn-primary" value="Guardar" v-on:click="guardarInformacion">
+                        <input type="button" class="btn btn-warning" value="Limpiar" v-on:click="LimpiarDatos">
                     </div>
                 </div>
                 <div class="row p-2">
