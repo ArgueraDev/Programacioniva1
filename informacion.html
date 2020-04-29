@@ -23,13 +23,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="principal.html">Inicio</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cuotas.html">Calculo de Cuota</a>
+                </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Inicio</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="public/vistas/informacion/informacion.html">Calculo de Cuota</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="#">Agregar Informacion</a>
                 </li>
             </ul>
@@ -54,24 +54,52 @@
                 </div>
             </div>
         </div>
-        <!--Informacion-->
-        <div class="card text-center" id="listado">
-            <nav class="card-header bg-dark">
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control" type="text" placeholder="Buscar" v-model="valor"
-                        v-on:keyup="verInformacion">
-                </form>
-            </nav>
-            <info-card v-for="item in items" :llave="item.idInformacion" :titulo="item.titulo"
-                :contenido="item.contenido">
-            </info-card>
+        
+        <!--Agregar Datos-->
+        <div class="card bg-light mb-3" style="max-width: 48rem;" id="frm-informacion">
+            <div class="card-header bg-dark text-center text-light">
+                Agregar Informacion Financiera
+            </div>
+            <div class="card-body">
+                <div class="row p-2">
+                    <div class="col-4">
+                        Titulo
+                    </div>
+                    <div class="col-12">
+                        <input type="text" required v-model="informacion.titulo" placeholder="Titulo"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col-4">
+                        Contenido
+                    </div>
+                    <div class="col-12">
+                        <input type="text" required v-model="informacion.contenido" placeholder="Contenido"
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col-12 text-center">
+                        <input type="button" class="btn btn-primary" value="Guardar" v-on:click="guardarInformacion">
+                        <input type="button" class="btn btn-warning" value="Limpiar" v-on:click="LimpiarDatos">
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col-12 text-center">
+                        <div class="alert" role="alert">
+                            {{ informacion.msg }}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
 <script src="public/js/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="public/vistas/inicio/consulta.js"></script>
-<script src="public/vistas/inicio/inicio.js"></script>
+<script src="public/vistas/inicio/informacion.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
 </script>

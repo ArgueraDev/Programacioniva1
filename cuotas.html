@@ -26,11 +26,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="principal.html">Inicio</span></a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Calculo de Cuota</a>
+                <li class="nav-item">
+                    <a class="nav-link active" href="#">Calculo de Cuota</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Agregar Informacion</a>
+                    <a class="nav-link" href="informacion.html">Agregar Informacion</a>
                 </li>
             </ul>
         </div>
@@ -54,42 +54,47 @@
                 </div>
             </div>
         </div>
-        
-        <!--Agregar Datos-->
-        <div class="card bg-light mb-3" style="max-width: 48rem;" id="frm-informacion">
-            <div class="card-header">
-                Agregar Informacion Financiera
+        <!--Cuotas-->
+        <div class="card text-center" id="frm-cuotas" id="cuotas">
+            <div class="card-header bg-dark text-center text-light">
+                Calculo de Cuota de Prestamo
             </div>
             <div class="card-body">
                 <div class="row p-2">
                     <div class="col-4">
-                        Titulo
+                        Monto
                     </div>
-                    <div class="col-12">
-                        <input type="text" required v-model="informacion.titulo" placeholder="Titulo"
+                    <div class="col-10">
+                        <input type="number" step="0.01" required v-model="cuota.monto" placeholder="$$"
                             class="form-control">
                     </div>
                 </div>
                 <div class="row p-2">
                     <div class="col-4">
-                        Contenido
+                        Plazo (años)
                     </div>
-                    <div class="col-12">
-                        <input type="text" required v-model="informacion.contenido" placeholder="Contenido"
+                    <div class="col-10">
+                        <input type="number" required v-model="cuota.plazo" placeholder="años" class="form-control">
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col-4">
+                        Interes anual
+                    </div>
+                    <div class="col-10">
+                        <input type="number" step="0.01" required v-model="cuota.tasa" placeholder="%"
                             class="form-control">
                     </div>
                 </div>
                 <div class="row p-2">
-                    <div class="col-12 text-center">
-                        <input type="button" class="btn btn-primary" value="Guardar" v-on:click="guardarInformacion">
-                        <input type="button" class="btn btn-warning" value="Limpiar" v-on:click="LimpiarDatos">
+                    <div class="col-10">
+                        {{ cuota.msg }}
                     </div>
                 </div>
                 <div class="row p-2">
                     <div class="col-12 text-center">
-                        <div class="alert alert-success" role="alert">
-                            {{ informacion.msg }}
-                        </div>
+                        <input type="button" class="btn btn-primary" value="Calcular" v-on:click="calcularCuota">
+                        <input type="button" class="btn btn-warning" value="Limpiar" v-on:click="Limpiar">
                     </div>
                 </div>
             </div>
@@ -99,7 +104,7 @@
 <script src="public/js/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="public/vistas/inicio/consulta.js"></script>
-<script src="public/vistas/informacion/informacion.js"></script>
+<script src="public/vistas/inicio/cuotas.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
 </script>

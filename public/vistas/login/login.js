@@ -11,7 +11,7 @@ var applogin = new Vue({
     iniciarSesion: function () {
       fetch(`private/Modulos/login/procesos.php?proceso=recibirUsuario&login=${JSON.stringify(this.login)}`).then(resp => resp.json()).then(resp => {
         if (resp.msg === "Bienvenido") {
-          location.href = "public/vistas/inicio/principal.html";
+          location.href = "principal.html";
         } else {
           this.login.msg = resp.msg;
         }
