@@ -72,7 +72,7 @@ class login
             if (empty($this->respuesta)) {
                 $this->respuesta['msg'] = 'correo o contraseña incorrecto ';
             } else {
-                $_SESSION['correo'] = $correo;
+                $_SESSION['id'] = $correo;
                 $this->respuesta['msg'] = 'Bienvenido';
             }
         }

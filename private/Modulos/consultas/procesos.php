@@ -32,8 +32,8 @@ class consulta{
         if( $this->respuesta['msg']==='correcto' ){
             if( $this->datos['accion']==='nuevo' ){
                 $this->db->consultas('
-                    INSERT INTO consultas (nombre,consulta) VALUES(
-                        "'. $_SESSION['correo'] .'",
+                    INSERT INTO consultas (idLogin,consulta) VALUES(
+                        "'. $_SESSION['id'] .'",
                         "'. $this->datos['consultas'] .'"
                     )
                 ');

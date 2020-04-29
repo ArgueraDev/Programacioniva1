@@ -35,10 +35,10 @@
             </ul>
         </div>
     </nav>
-    <div id="Contenedor" class="d-flex">
+    <div id="Contenedor" class="d-flex" v-on:submit.prevent="guardarConsulta">
         <!--Consulta-->
-        <div class="well sidebar-nav" id="consultas">
-            <div class="col">
+        <div class="well sidebar-nav">
+            <div class="col" id="consultas">
                 <nav class="card-header bg-dark text-center text-light">Consultas</nav>
                 <div class="col overflow-auto" id="base">
                     <consulta-card v-for="valor in valores" :llave="valor.idConsulta" :nombre="valor.nombre"
@@ -47,12 +47,12 @@
                 </div>
                 <div class="col text-center ">
                     <div class="row p-2">
-                        <textarea rows="3" cols="50" v-model="consulta.consultas" placeholder="Escriba...."
-                            class="form-control"></textarea>
+                        <input type="text" rows="3" cols="50" v-model="consulta.consultas" placeholder="Escriba...."
+                            class="form-control">
                     </div>
                     <div class="row p-2">
                         <div class="col-12 text-center">
-                            <input type="button" v-on:click="guardarConsulta" class="btn btn-primary" value="Enviar">
+                            <input type="submit" class="btn btn-primary" value="Enviar">
                         </div>
                     </div>
                 </div>
@@ -75,6 +75,7 @@
 </body>
 <script src="public/js/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="public/vistas/inicio/consulta.js"></script>
 <script src="public/vistas/inicio/inicio.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
