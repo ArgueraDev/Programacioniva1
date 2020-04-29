@@ -1,10 +1,9 @@
 Vue.component('consulta-card', {
-    props: ['nombre', 'contenido', 'llave'],
+    props: ['contenido', 'llave'],
     template: `
-    <div class="card">
+    <div class="card p-2">
     <div class="card-body">
       <p class="card-text">{{ contenido }}</p>
-      <p class="card-text"><small class="text-muted">{{ nombre }}</small></p>
     </div>
     </div>
     `
@@ -13,10 +12,10 @@ Vue.component('consulta-card', {
 var appconsulta = new Vue({
     el: '#consultas',
     data: {
-        consulta: {
+        consultas: {
             idConsulta: 0,
             accion: 'nuevo',
-            consultas: '',
+            consulta: '',
             msg: ''
         },
         valores: [],
@@ -24,7 +23,7 @@ var appconsulta = new Vue({
     },
     methods: {
         guardarConsulta: function () {
-            fetch(`private/Modulos/consultas/procesos.php?proceso=recibirDatos&consulta=${JSON.stringify(this.consulta)}`).then(resp => resp.json()).then(resp => {
+            fetch(`private/Modulos/consultas/procesos.php?proceso=recibirDatos&consulta=${JSON.stringify(this.consultas)}`).then(resp => resp.json()).then(resp => {
                 this.verConsultas();
                 this.limpiezaConsulta();
             });
@@ -35,9 +34,9 @@ var appconsulta = new Vue({
             });
         },
         limpiezaConsulta: function () {
-            this.consulta.idConsulta = 0;
-            this.consulta.consulta = '';
-            this.consulta.accion = 'nuevo';
+            this.consultas.idConsulta = 0;
+            this.consultas.consulta = '';
+            this.consultas.accion = 'nuevo';
         }
     },
     created: function () {

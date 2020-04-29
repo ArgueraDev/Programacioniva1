@@ -27,7 +27,7 @@
                     <a class="nav-link" href="#">Inicio</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Calculo de Cuota</a>
+                    <a class="nav-link" href="public/vistas/informacion/informacion.html">Calculo de Cuota</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Agregar Informacion</a>
@@ -35,30 +35,25 @@
             </ul>
         </div>
     </nav>
-    <div id="Contenedor" class="d-flex" v-on:submit.prevent="guardarConsulta">
+    <div id="Contenedor" class="d-flex">
         <!--Consulta-->
-        <div class="well sidebar-nav">
-            <div class="col" id="consultas">
-                <nav class="card-header bg-dark text-center text-light">Consultas</nav>
-                <div class="col overflow-auto" id="base">
-                    <consulta-card v-for="valor in valores" :llave="valor.idConsulta" :nombre="valor.nombre"
-                        :contenido="valor.consulta">
-                    </consulta-card>
+        <div class="well sidebar-nav p-1" id="consultas">
+            <nav class="card-header bg-dark text-center text-light">Consultas</nav>
+            <div class="col overflow-auto p-2" id="base">
+                <consulta-card v-for="valor in valores" :llave="valor.idConsulta" :contenido="valor.consulta">
+                </consulta-card>
+            </div>
+            <div class="col text-center ">
+                <div class="row p-2">
+                    <input type="text" v-model="consultas.consulta" placeholder="Escriba...." class="form-control">
                 </div>
-                <div class="col text-center ">
-                    <div class="row p-2">
-                        <input type="text" rows="3" cols="50" v-model="consulta.consultas" placeholder="Escriba...."
-                            class="form-control">
-                    </div>
-                    <div class="row p-2">
-                        <div class="col-12 text-center">
-                            <input type="submit" class="btn btn-primary" value="Enviar">
-                        </div>
+                <div class="row p-2">
+                    <div class="col-12 text-center">
+                        <input type="button" v-on:click="guardarConsulta" class="btn btn-primary" value="Enviar">
                     </div>
                 </div>
             </div>
         </div>
-
         <!--Informacion-->
         <div class="card text-center" id="listado">
             <nav class="card-header bg-dark">

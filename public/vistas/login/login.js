@@ -2,7 +2,6 @@ var applogin = new Vue({
   el: '#frm-login',
   data: {
     login: {
-      accion: 'validar',
       correo: '',
       contraseña: '',
       msg: ''

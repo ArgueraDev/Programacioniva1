@@ -64,22 +64,13 @@ class login
         if (empty($this->datos['correo']) || empty($this->datos['contraseña'])) {
             $this->respuesta['msg'] = 'ingrese correo y contraseña';
         } else {
-            $correo = $this->datos['correo'];
-            $contraseña = $this->datos['contraseña'];
 
-            $this->db->consultas('select * from login where correo="' . $correo . '" and contraseña="' . $contraseña . '" limit 1');
-            $alquiler = $this->respuesta = $this->db->obtener_data();
-            foreach ($alquiler as $key => $value) {
-                $dd[] = [
-                    'idLogin'   => $value['idLogin'],
-                    'correo'    => $value['correo']
-                ];
-            }
-            return $this->respuesta = $dd;
+            $this->db->consultas('select * from login where correo="' . $this->datos['correo'] . '" and contraseña="' . $this->datos['contraseña'] . '" limit 1');
+            $this->respuesta = $this->db->obtener_datos();
             if (empty($this->respuesta)) {
                 $this->respuesta['msg'] = 'correo o contraseña incorrecto ';
             } else {
-                $_SESSION['id'] = $this->respuesta['idLogin'];
+                $_SESSION['correo']= $this->datos['correo'];
                 $this->respuesta['msg'] = 'Bienvenido';
             }
         }
