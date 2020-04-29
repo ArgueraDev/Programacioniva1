@@ -62,17 +62,24 @@ class login
     private function validar_Us()
     {
         if (empty($this->datos['correo']) || empty($this->datos['contraseña'])) {
-            $this->respuesta['msg'] = 'Correo o contraseña invalido';
+            $this->respuesta['msg'] = 'ingrese correo y contraseña';
         } else {
             $correo = $this->datos['correo'];
             $contraseña = $this->datos['contraseña'];
 
             $this->db->consultas('select * from login where correo="' . $correo . '" and contraseña="' . $contraseña . '" limit 1');
-            $this->respuesta = $this->db->obtener_datos();
+            $alquiler = $this->respuesta = $this->db->obtener_data();
+            foreach ($alquiler as $key => $value) {
+                $dd[] = [
+                    'idLogin'   => $value['idLogin'],
+                    'correo'    => $value['correo']
+                ];
+            }
+            return $this->respuesta = $dd;
             if (empty($this->respuesta)) {
                 $this->respuesta['msg'] = 'correo o contraseña incorrecto ';
             } else {
-                $_SESSION['id'] = $correo;
+                $_SESSION['id'] = $this->respuesta['idLogin'];
                 $this->respuesta['msg'] = 'Bienvenido';
             }
         }
