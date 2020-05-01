@@ -12,48 +12,46 @@
     <title> Educacion Financiera</title>
 </head>
 
-<body class="row m-0 bg-primary justify-content-center aling-items-center vh-100">
-    <form v-on:submit.prevent="RecuperarContra" v-on:reset="Volver" id="frm-recuperar" method="post">
-        <div class="card mb-3 text-center">
-            <div class="card-header">
-                Restablecer Contraseña
+<body class="row m-0 bg-primary justify-content-center align-items-center vh-100">
+    <div class="card text-center" id="frm-recuperar">
+        <div class="card-header">
+            Restablecer Contraseña
+        </div>
+        <div class="card-body">
+            <div class="row p-2">
+                <div class="col-4">
+                    Correo
+                </div>
+                <div class="col-12">
+                    <input type="email" required="true" v-model="restablecer.correo" placeholder="Correo"
+                        class="form-control">
+                </div>
             </div>
-            <div class="card-body">
-                <div class="row p-2">
-                    <div class="col-4">
-                        Correo
-                    </div>
-                    <div class="col-12">
-                        <input type="email" required="true" v-model="restablecer.correo" placeholder="Correo"
-                            class="form-control">
-                    </div>
+            <div class="row p-2">
+                <div class="col-4">
+                    Nueva Contraseña
                 </div>
-                <div class="row p-2">
-                    <div class="col-4">
-                        Nueva Contraseña
-                    </div>
-                    <div class="col-12">
-                        <input type="text" required="true" v-model="restablecer.contraseña" placeholder="contraseña"
-                            class="form-control">
-                    </div>
+                <div class="col-12">
+                    <input type="text" required="true" v-model="restablecer.contraseña" placeholder="contraseña"
+                        class="form-control">
                 </div>
-                <div class="row p-2">
-                    <div class="col-12 text-center">
-                        <input type="submit" class="btn btn-primary" value="Restablecer">
-                        <input type="reset" class="btn btn-success" value="Regresar">
-                        
-                    </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-12 text-center">
+                    <input type="button" class="btn btn-primary" value="Restablecer" v-on:click="RecuperarContra">
+                    <input type="button" class="btn btn-success" value="Regresar" v-on:click="Volver">
+
                 </div>
-                <div class="row p-2">
-                    <div class="col-12 text-center">
-                        <div class="alert alert-success" role="alert">
-                            {{ restablecer.msg }}
-                        </div>
+            </div>
+            <div class="row p-2">
+                <div class="col-12 text-center">
+                    <div class="alert" role="alert">
+                        {{ restablecer.msg }}
                     </div>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="public/js/jquery-ui.min.js"></script>
