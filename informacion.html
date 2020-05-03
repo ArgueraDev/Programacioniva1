@@ -42,8 +42,9 @@
         <!--Consulta-->
         <div class="well sidebar-nav p-1" id="consultas">
             <nav class="card-header bg-dark text-center text-light">Consultas</nav>
-            <div class="col overflow-auto p-2" id="base">
-                <consulta-card v-for="valor in valores" :llave="valor.idConsulta" :contenido="valor.consulta">
+            <div class="col overflow-auto" id="base">
+                <consulta-card class="row p-2" v-for="valor in valores" :llave="valor.idConsulta"
+                    :contenido="valor.consulta">
                 </consulta-card>
             </div>
             <div class="col text-center ">
@@ -57,7 +58,7 @@
                 </div>
             </div>
         </div>
-        
+
         <!--Agregar Datos-->
         <div class="card bg-light mb-3" style="max-width: 48rem;" id="frm-informacion">
             <div class="card-header bg-dark text-center text-light">
@@ -98,6 +99,7 @@
             </div>
         </div>
     </div>
+    <div class="row text-center p-2">Copyright&copy; 2020 Finappza Todos los derechos reservados</div>
 </body>
 <script src="public/js/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>

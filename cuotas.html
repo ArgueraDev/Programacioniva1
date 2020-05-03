@@ -42,8 +42,9 @@
         <!--Consulta-->
         <div class="well sidebar-nav p-1" id="consultas">
             <nav class="card-header bg-dark text-center text-light">Consultas</nav>
-            <div class="col overflow-auto p-2" id="base">
-                <consulta-card v-for="valor in valores" :llave="valor.idConsulta" :contenido="valor.consulta">
+            <div class="col overflow-auto" id="base">
+                <consulta-card class="row p-2" v-for="valor in valores" :llave="valor.idConsulta"
+                    :contenido="valor.consulta">
                 </consulta-card>
             </div>
             <div class="col text-center ">

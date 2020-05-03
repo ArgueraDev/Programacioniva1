@@ -1,7 +1,7 @@
 Vue.component('info-card', {
     props: ['titulo', 'contenido', 'llave'],
     template: `
-    <div class="card mb-3">
+    <div class="card border-0">
     <div class="card-body">
     <h5 class="card-title">{{ titulo }}</h5>
     <p class="card-text">{{ contenido }}</p>

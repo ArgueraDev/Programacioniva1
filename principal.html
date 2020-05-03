@@ -38,12 +38,13 @@
             </ul>
         </div>
     </nav>
-    <div id="Contenedor" class="d-flex">
+    <div id="row Contenedor" class="d-flex">
         <!--Consulta-->
         <div class="well sidebar-nav p-1" id="consultas">
             <nav class="card-header bg-dark text-center text-light">Consultas</nav>
-            <div class="col overflow-auto p-2" id="base">
-                <consulta-card v-for="valor in valores" :llave="valor.idConsulta" :contenido="valor.consulta">
+            <div class="col overflow-auto" id="base">
+                <consulta-card class="row p-2" v-for="valor in valores" :llave="valor.idConsulta"
+                    :contenido="valor.consulta">
                 </consulta-card>
             </div>
             <div class="col text-center ">
@@ -76,6 +77,7 @@
                     :contenido="item.contenido">
                 </info-card>
             </div>
+            <div class="row text-center p-2"> &copy; 2020 Finappza, Inc. Todos los derechos reservados.</div>
         </div>
     </div>
 </body>
