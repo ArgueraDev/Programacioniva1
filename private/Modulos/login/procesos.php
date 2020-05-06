@@ -118,10 +118,10 @@ class login
 
     public function verVariable($valor = '')
     {
-        if (isset($_SESSION['correo'])) {
+        if (!isset($_SESSION['correo'])) {
             $this->respuesta['msg'] = 'Bienvenido';
         } else {
-            $this->respuesta['msg'] = 'Registrese';
+            $this->respuesta['msg'] = 'regrese';
         }
     }
     public function cerrar($valor = '')

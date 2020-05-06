@@ -25,10 +25,10 @@ var applogin = new Vue({
     },
     variable: function () {
       fetch(`private/Modulos/login/procesos.php?proceso=verVariable&login=${this.valor}`).then(resp => resp.json()).then(resp => {
-        if (resp.msg == 'Registrese') {
-          alertify.message(resp.msg);
-        } else if (resp.msg == 'Bienvenido') {
+        if (resp.msg == 'regrese') {
           location.href = "principal.html";
+        } else if (resp.msg == 'Bienvenido') {
+          alertify.message(resp.msg);
         }
       });
     }
