@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 include('../../Config/Config.php');
@@ -51,5 +52,18 @@ class consulta
             select * from consultas where consulta like "%' . $valor . '%"
         ');
         return $this->respuesta = $this->db->obtener_datos();
+    }
+
+    public function verVariable($valor = '')
+    {
+        if (isset($_SESSION['correo'])) {
+            $this->respuesta['msg'] = 'Bienvenido';
+        } else {
+            $this->respuesta['msg'] = 'Registrese';
+        }
+    }
+    public function cerrar($valor = '')
+    {
+        session_destroy();
     }
 }

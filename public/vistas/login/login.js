@@ -3,9 +3,9 @@ var applogin = new Vue({
   data: {
     login: {
       correo: '',
-      contraseña: '',
-      msg: ''
-    }
+      contraseña: ''
+    },
+    valor: ''
   },
   methods: {
     iniciarSesion: function () {
@@ -13,7 +13,7 @@ var applogin = new Vue({
         if (resp.msg === "Bienvenido") {
           location.href = "principal.html";
         } else {
-          this.login.msg = resp.msg;
+          alertify.warning(resp.msg);
         }
       });
     },
@@ -22,6 +22,18 @@ var applogin = new Vue({
     },
     Recuperar: function () {
       location.href = "contraseña.html";
+    },
+    variable: function () {
+      fetch(`private/Modulos/login/procesos.php?proceso=verVariable&login=${this.valor}`).then(resp => resp.json()).then(resp => {
+        if (resp.msg == 'Registrese') {
+          alertify.message(resp.msg);
+        } else if (resp.msg == 'Bienvenido') {
+          location.href = "principal.html";
+        }
+      });
     }
+  },
+  created: function () {
+    this.variable();
   }
 });

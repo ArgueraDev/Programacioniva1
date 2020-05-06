@@ -28,30 +28,33 @@ class login
     }
     private function validar_datos()
     {
-        if (empty($this->datos['nombre'])) {
-            $this->respuesta['msg'] = 'por favor ingrese el nombre';
+        $this->db->consultas('select * from login where correo="' . $this->datos['correo'] . '" limit 1');
+        $this->respuesta = $this->db->obtener_datos();
+        if (empty(trim($this->datos['nombre']))) {
+            $this->respuesta['msg'] = 'Por favor ingrese su nombre';
+        } else if (empty(trim($this->datos['correo']))) {
+            $this->respuesta['msg'] = 'Por favor ingrese un correo';
+        } else if (strpos(trim($this->datos['correo']), '@') === false || strpos(trim($this->datos['correo']), '.') === false) {
+            $this->respuesta['msg'] = 'Correo no Valido';
+        } else if (!empty($this->respuesta)) {
+            $this->respuesta['msg'] = 'Este Correo ya existe';
+        } else if (empty(trim($this->datos['contraseña']))) {
+            $this->respuesta['msg'] = 'Por favor ingrese una contraseña';
+        } else {
+            $this->almacenar_registro();
         }
-        if (empty($this->datos['correo'])) {
-            $this->respuesta['msg'] = 'por favor ingrese el correo';
-        }
-        if (empty($this->datos['contraseña'])) {
-            $this->respuesta['msg'] = 'por favor ingrese la contraseña';
-        }
-        $this->almacenar_registro();
     }
     private function almacenar_registro()
     {
-        if ($this->respuesta['msg'] === 'correcto') {
-            if ($this->datos['accion'] === 'nuevo') {
-                $this->db->consultas('
+        if ($this->datos['accion'] === 'nuevo') {
+            $this->db->consultas('
                     INSERT INTO login (nombre,correo,contraseña) VALUES(
                         "' . $this->datos['nombre'] . '",
                         "' . $this->datos['correo'] . '",
                         "' . $this->datos['contraseña'] . '"
                     )
                 ');
-                $this->respuesta['msg'] = 'Registro insertado correctamente';
-            }
+            $this->respuesta['msg'] = 'Registro insertado correctamente';
         }
     }
     public function recibirUsuario($login)
@@ -61,16 +64,19 @@ class login
     }
     private function validar_Us()
     {
-        if (empty($this->datos['correo']) || empty($this->datos['contraseña'])) {
-            $this->respuesta['msg'] = 'ingrese correo y contraseña';
+        if (empty(trim($this->datos['correo']))) {
+            $this->respuesta['msg'] = 'Ingrese su Correo';
+        } else if (strpos(trim($this->datos['correo']), '@') === false || strpos(trim($this->datos['correo']), '.') === false) {
+            $this->respuesta['msg'] = 'Correo no Valido';
+        } else if (empty(trim($this->datos['contraseña']))) {
+            $this->respuesta['msg'] = 'Ingrese su Contraseña';
         } else {
-
             $this->db->consultas('select * from login where correo="' . $this->datos['correo'] . '" and contraseña="' . $this->datos['contraseña'] . '" limit 1');
             $this->respuesta = $this->db->obtener_datos();
             if (empty($this->respuesta)) {
-                $this->respuesta['msg'] = 'correo o contraseña incorrecto ';
+                $this->respuesta['msg'] = 'Correo y Contraseña no coinciden';
             } else {
-                $_SESSION['correo']= $this->datos['correo'];
+                $_SESSION['correo'] = $this->datos['correo'];
                 $this->respuesta['msg'] = 'Bienvenido';
             }
         }
@@ -83,26 +89,43 @@ class login
     }
     private function validar_correo()
     {
-        if (empty($this->datos['correo'])) {
+        $this->db->consultas('select * from login where correo="' . $this->datos['correo'] . '" limit 1');
+        $this->respuesta = $this->db->obtener_datos();
+        if (empty(trim($this->datos['correo']))) {
             $this->respuesta['msg'] = 'por favor ingrese el correo';
+        } else if (strpos(trim($this->datos['correo']), '@') === false || strpos(trim($this->datos['correo']), '.') === false) {
+            $this->respuesta['msg'] = 'Correo no Valido';
+        } else if (empty($this->respuesta)) {
+            $this->respuesta['msg'] = 'Este Correo no existe';
+        } else if (empty(trim($this->datos['contraseña']))) {
+            $this->respuesta['msg'] = 'por favor ingrese la nueva contraseña';
+        } else {
+            $this->actualizar_contraseña();
         }
-        if (empty($this->datos['contraseña'])) {
-            $this->respuesta['msg'] = 'por favor ingrese la contraseña';
-        }
-        $this->actualizar_contraseña();
     }
     private function actualizar_contraseña()
     {
-        if ($this->respuesta['msg'] === 'correcto') {
-            if ($this->datos['accion'] === 'modificar') {
-                $this->db->consultas('
+        if ($this->datos['accion'] === 'modificar') {
+            $this->db->consultas('
                    UPDATE login SET
                         contraseña  = "' . $this->datos['contraseña'] . '",
                         correo   = "' . $this->datos['correo'] . '"
                     WHERE correo = "' . $this->datos['correo'] . '"
                 ');
-                $this->respuesta['msg'] = 'Contraseña Restablecida';
-            }
+            $this->respuesta['msg'] = 'Contraseña Restablecida';
         }
+    }
+
+    public function verVariable($valor = '')
+    {
+        if (isset($_SESSION['correo'])) {
+            $this->respuesta['msg'] = 'Bienvenido';
+        } else {
+            $this->respuesta['msg'] = 'Registrese';
+        }
+    }
+    public function cerrar($valor = '')
+    {
+        session_destroy();
     }
 }

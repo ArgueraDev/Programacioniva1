@@ -37,9 +37,29 @@ var appconsulta = new Vue({
             this.consultas.idConsulta = 0;
             this.consultas.consulta = '';
             this.consultas.accion = 'nuevo';
+        },
+        variable: function () {
+            fetch(`private/Modulos/consultas/procesos.php?proceso=verVariable&consulta=${this.valor2}`).then(resp => resp.json()).then(resp => {
+                if (resp.msg == 'Registrese') {
+                    location.href = "index.html";
+                } else if (resp.msg == 'Bienvenido') {
+                    alertify.message(resp.msg);
+                }
+            });
         }
     },
     created: function () {
         this.verConsultas();
+        this.variable();
+    }
+});
+var barra = new Vue({
+    el: '#barra',
+    methods: {
+        cerrar: function () {
+            fetch(`private/Modulos/consultas/procesos.php?proceso=cerrar&consulta=${this.valor2}`).then(resp => resp.json()).then(resp => {
+                location.href = "index.html";
+            });
+        }
     }
 });

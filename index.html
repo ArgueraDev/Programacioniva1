@@ -5,15 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!--CSS-->
     <link rel="stylesheet" href="public/css/estilos.css">
+    <link rel="stylesheet" href="public/alertifyjs/css/alertify.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!--titulo-->
     <link rel="shortcut icon" href="img/logo.png">
     <title> Educacion Financiera</title>
 </head>
 
 <body class="row m-0 bg-primary justify-content-center align-items-center vh-100">
-    <div class="card text-center" id="frm-login">
+    <div class="card bg-dark text-center text-light" id="frm-login">
         <div class="card-header">
             Iniciar Sesión
         </div>
@@ -23,8 +28,7 @@
                     Correo
                 </div>
                 <div class="col-12">
-                    <input type="email" required="true" v-model="login.correo" placeholder="Correo"
-                        class="form-control">
+                    <input type="email" required v-model="login.correo" placeholder="Correo" class="form-control">
                 </div>
             </div>
             <div class="row p-2">
@@ -32,7 +36,7 @@
                     Contraseña
                 </div>
                 <div class="col-12">
-                    <input type="password" required="true" v-model="login.contraseña" placeholder="contraseña"
+                    <input type="password" required v-model="login.contraseña" placeholder="contraseña"
                         class="form-control">
                 </div>
             </div>
@@ -62,6 +66,7 @@
 <script src="public/js/jquery-ui.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+<script src="public/alertifyjs/alertify.min.js"></script>
 <script src="public/vistas/login/login.js"></script>
 
 </html>
