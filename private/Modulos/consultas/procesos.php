@@ -30,18 +30,17 @@ class consulta
     {
         if (empty(trim($this->datos['consulta']))) {
             $this->respuesta['msg'] = 'Por favor ingrese la consulta';
+        } else if (empty(trim($this->datos['idLogin']))) {
+            $this->respuesta['msg'] = 'Falta ID';
         }
         $this->almacenar_consulta();
     }
     private function almacenar_consulta()
     {
-        $correo = $_SESSION['correo'];
-        $this->db->consultas('select * from login where correo="' . $correo . '" limit 1');
-        $resultado = $this->db->obtener_datos();
         if ($this->datos['accion'] === 'nuevo') {
             $this->db->consultas('
                     INSERT INTO consultas (idLogin,consulta) VALUES(
-                        "' . $resultado['idLogin'] . '",
+                        "' . $this->datos['idLogin'] . '",
                         "' . $this->datos['consulta'] . '"
                     )
                 ');
@@ -67,5 +66,11 @@ class consulta
     public function cerrar($valor = '')
     {
         session_destroy();
+    }
+
+    public function idLogin($valor = '')
+    {
+        $this->db->consultas('select * from login where correo ="' . $_SESSION['correo'] . '"');
+        $this->respuesta = $this->db->obtener_datos();
     }
 }

@@ -14,19 +14,20 @@ var appconsulta = new Vue({
     data: {
         consultas: {
             idConsulta: 0,
+            idLogin: 0,
             accion: 'nuevo',
             consulta: '',
             msg: ''
         },
         valores: [],
-        valor2: ""
+        valor2: "",
     },
     methods: {
         guardarConsulta: function () {
             fetch(`private/Modulos/consultas/procesos.php?proceso=recibirDatos&consulta=${JSON.stringify(this.consultas)}`).then(resp => resp.json()).then(resp => {
-                if (resp.msg == 'Por favor ingrese la consulta') {
+                if (resp.msg != 'Envio Exitoso') {
                     alertify.warning(resp.msg);
-                } else if (resp.msg == 'Envio Exitoso') {
+                } else {
                     alertify.success(resp.msg);
                     this.verConsultas();
                     this.limpiezaConsulta();
@@ -48,8 +49,15 @@ var appconsulta = new Vue({
                 if (resp.msg == 'Registrese') {
                     location.href = "index.html";
                 } else if (resp.msg == 'Bienvenido') {
+                    this.consultas.consulta = resp.idLogin;
                     alertify.message(resp.msg);
                 }
+            });
+        },
+        verIdLogin: function () {
+            fetch(`private/Modulos/consultas/procesos.php?proceso=idLogin&consulta=""`).then(resp => resp.json()).then(resp => {
+                this.consultas.idLogin = resp[0].idLogin;
+                this.guardarConsulta();
             });
         }
     },
