@@ -24,8 +24,13 @@ var appconsulta = new Vue({
     methods: {
         guardarConsulta: function () {
             fetch(`private/Modulos/consultas/procesos.php?proceso=recibirDatos&consulta=${JSON.stringify(this.consultas)}`).then(resp => resp.json()).then(resp => {
-                this.verConsultas();
-                this.limpiezaConsulta();
+                if (resp.msg == 'Por favor ingrese la consulta') {
+                    alertify.warning(resp.msg);
+                } else if (resp.msg == 'Envio Exitoso') {
+                    alertify.success(resp.msg);
+                    this.verConsultas();
+                    this.limpiezaConsulta();
+                }
             });
         },
         verConsultas: function () {

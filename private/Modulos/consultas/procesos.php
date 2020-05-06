@@ -28,22 +28,24 @@ class consulta
     }
     private function validar_datos()
     {
-        if (empty($this->datos['consulta'])) {
-            $this->respuesta['msg'] = 'por favor ingrese la consulta';
+        if (empty(trim($this->datos['consulta']))) {
+            $this->respuesta['msg'] = 'Por favor ingrese la consulta';
         }
         $this->almacenar_consulta();
     }
     private function almacenar_consulta()
     {
-        if ($this->respuesta['msg'] === 'correcto') {
-            if ($this->datos['accion'] === 'nuevo') {
-                $this->db->consultas('
-                    INSERT INTO consultas (consulta) VALUES(
+        $correo = $_SESSION['correo'];
+        $this->db->consultas('select * from login where correo="' . $correo . '" limit 1');
+        $resultado = $this->db->obtener_datos();
+        if ($this->datos['accion'] === 'nuevo') {
+            $this->db->consultas('
+                    INSERT INTO consultas (idLogin,consulta) VALUES(
+                        "' . $resultado['idLogin'] . '",
                         "' . $this->datos['consulta'] . '"
                     )
                 ');
-                $this->respuesta['msg'] = 'Registro insertado correctamente';
-            }
+            $this->respuesta['msg'] = 'Envio Exitoso';
         }
     }
     public function verConsultas($valor = '')
