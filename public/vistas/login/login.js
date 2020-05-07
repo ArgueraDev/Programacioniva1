@@ -21,8 +21,6 @@ var applogin = new Vue({
       fetch(`private/Modulos/login/procesos.php?proceso=verVariable&login=${this.valor}`).then(resp => resp.json()).then(resp => {
         if (resp.msg == 'regrese') {
           location.href = "principal.html";
-        } else if (resp.msg == 'Bienvenido') {
-          alertify.message(resp.msg);
         }
       });
     }
