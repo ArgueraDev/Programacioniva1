@@ -53,9 +53,6 @@ var appconsulta = new Vue({
             fetch(`private/Modulos/consultas/procesos.php?proceso=verVariable&consulta=${this.valor2}`).then(resp => resp.json()).then(resp => {
                 if (resp.msg == 'Registrese') {
                     location.href = "index.html";
-                } else if (resp.msg == 'Bienvenido') {
-                    this.consultas.consulta = resp.idLogin;
-                    alertify.message(resp.msg);
                 }
             });
         },
