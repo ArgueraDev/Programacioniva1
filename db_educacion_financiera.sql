@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-05-2020 a las 21:06:40
+-- Tiempo de generación: 07-05-2020 a las 19:20:53
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.2
 
@@ -31,8 +31,19 @@ SET time_zone = "+00:00";
 CREATE TABLE `consultas` (
   `idConsulta` int(10) NOT NULL,
   `idLogin` int(10) NOT NULL,
-  `consulta` varchar(150) NOT NULL
+  `consulta` varchar(150) NOT NULL,
+  `fecha` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `consultas`
+--
+
+INSERT INTO `consultas` (`idConsulta`, `idLogin`, `consulta`, `fecha`) VALUES
+(22, 1, 'hola', '2020-05-07'),
+(23, 1, 'esta es una prueba de consulta', '2020-05-07'),
+(24, 1, 'dfghjiofasdfghjkljhgfjkfjhhlkdflkjflskdjflksddjflkdsjfksjflsdkjflsdkfjlsdkjflsdkjflsdkjflsdkjfsdkjflsddkfjsldkfjsdlkfjsdlkfjslkfjsdlkfsjlkfjldskfjlkdj', '2020-05-07'),
+(25, 11, 'Hola', '2020-05-07');
 
 -- --------------------------------------------------------
 
@@ -54,7 +65,10 @@ INSERT INTO `informacion` (`idInformacion`, `titulo`, `contenido`) VALUES
 (2, 'Tasa de interés activa', 'Es la tasa de interés que cobran las entidades financieras al otorgar un crédito'),
 (3, 'Tasa de interés efectiva', 'es la que las instituciones financieras aplican a los créditos y que incluye la tasa nominal más el cobro del seguro, comisiones e impuestos'),
 (4, 'Crédito o Préstamo', 'Es un producto financiero a través del cual los bancos, bancos cooperativos o sociedades de ahorro y credito                           nos facilitan una cantidad de dinero a un plazo y costo determina'),
-(14, '¿Por qué es importante la informacion financiera?', 'La educacion financiera es uno de los motores del desarrollo economico y social ya que tomar desiciones financieras acertadas mejora nuestro nivel de vida');
+(14, '¿Por qué es importante la informacion financiera?', 'La educacion financiera es uno de los motores del desarrollo economico y social ya que tomar desiciones financieras acertadas mejora nuestro nivel de vida'),
+(15, 'fghfjkl', 'La educacion financiera es uno de los motores del desarrollo economico y social ya que tomar desiciones financieras acertadas mejora nuestro nivel de vida'),
+(16, 'hola', 'hola'),
+(17, 'Hola Mundo', 'Este es un nuevo contenido de información');
 
 -- --------------------------------------------------------
 
@@ -74,7 +88,13 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`idLogin`, `nombre`, `correo`, `contraseña`) VALUES
-(1, 'Roberto', 'roberto@ugb.sv', '123456');
+(1, 'Roberto', 'roberto@ugb.sv', '123456'),
+(11, 'Yasmin', 'yasmin@ugb.sv', '123456'),
+(12, 'David', 'david@ugb.sv', '123456'),
+(13, 'Frank', 'frank@ugb.sv', '123456'),
+(14, 'Carlos', 'carlos@ugb.sv', '123456'),
+(15, 'arguera', 'arguera@ugb.sv', '123456'),
+(16, 'dfghj', 'dfg@ugb.sv', '12345');
 
 --
 -- Índices para tablas volcadas
@@ -107,19 +127,19 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT de la tabla `consultas`
 --
 ALTER TABLE `consultas`
-  MODIFY `idConsulta` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idConsulta` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `informacion`
 --
 ALTER TABLE `informacion`
-  MODIFY `idInformacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idInformacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `login`
 --
 ALTER TABLE `login`
-  MODIFY `idLogin` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idLogin` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Restricciones para tablas volcadas
