@@ -21,10 +21,9 @@ class informacion{
         $this->validar_datos();
     }
     private function validar_datos(){
-        if( empty($this->datos['titulo']) ){
+        if( empty(trim($this->datos['titulo'])) ){
             $this->respuesta['msg'] = 'por favor ingrese un titulo';
-        }
-        if( empty($this->datos['contenido']) ){
+        }else if( empty(trim($this->datos['contenido'])) ){
             $this->respuesta['msg'] = 'por favor ingrese un contenido';
         }
         $this->almacenar_registro();
@@ -43,7 +42,8 @@ class informacion{
         }
     }
     public function buscarInformacion($valor=''){
-        $this->db->consultas('select * from informacion where titulo like "%'.$valor.'%" or contenido like "%'.$valor.'%"');
+        $this->db->consultas('select * from informacion where titulo like "%'.$valor.'%" or contenido like "%'.$valor.'%"
+        ORDER BY idInformacion DESC');
         return $this->respuesta = $this->db->obtener_datos();
     }
     public function eliminarInformacion($idInformacion=''){
@@ -55,4 +55,3 @@ class informacion{
         $this->respuesta['msg'] = 'Registro eliminado correctamente';
     }
 }
-?>

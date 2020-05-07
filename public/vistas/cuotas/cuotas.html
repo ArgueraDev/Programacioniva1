@@ -1,0 +1,42 @@
+<div class="card text-center">
+    <div class="card-header bg-dark text-center text-light">
+        Calculo de Cuota de Prestamo
+    </div>
+    <div class="card-body" id="cuotas" v-on:submit.prevent="calcularCuota">
+        <div class="row p-2">
+            <div class="col-4">
+                Monto
+            </div>
+            <div class="col-10">
+                <input type="number" step="0.01" required v-model="cuota.monto" placeholder="$$" class="form-control">
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-4">
+                Plazo (años)
+            </div>
+            <div class="col-10">
+                <input type="number" required v-model="cuota.plazo" placeholder="años" class="form-control">
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-4">
+                Interes anual
+            </div>
+            <div class="col-10">
+                <input type="number" step="0.01" required v-model="cuota.tasa" placeholder="%" class="form-control">
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-10">
+                {{ cuota.msg }}
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-12 text-center">
+                <input type="button" class="btn btn-primary" value="Calcular" v-on:click="calcularCuota">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="public/vistas/cuotas/cuotas.js"></script>

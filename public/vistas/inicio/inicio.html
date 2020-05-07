@@ -1,0 +1,16 @@
+<div class="row m-0 bg-dark justify-content-center align-items-center">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/KLP2vPxZpfo" frameborder="0"
+        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+<div class="card text-center" id="listado">
+    <nav class="card-header bg-dark">
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control" type="text" placeholder="Buscar" v-model="valor" v-on:keyup="verInformacion">
+        </form>
+    </nav>
+    <div class="row row-cols-1 row-cols-md-3">
+        <info-card v-for="item in items" :llave="item.idInformacion" :titulo="item.titulo" :contenido="item.contenido">
+        </info-card>
+    </div>
+</div>
+<script src="public/vistas/inicio/inicio.js"></script>

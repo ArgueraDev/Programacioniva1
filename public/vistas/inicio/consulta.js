@@ -1,9 +1,14 @@
 Vue.component('consulta-card', {
-    props: ['contenido', 'llave'],
+    props: ['contenido', 'llave', 'nombre', 'fecha'],
     template: `
+    <div class="row row-cols-1 row-cols-md-1">
     <div class="card">
     <div class="card-body">
       <p class="card-text">{{ contenido }}</p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">{{ nombre }}  {{ fecha }}</small>
+    </div>
     </div>
     </div>
     `
@@ -62,8 +67,8 @@ var appconsulta = new Vue({
         }
     },
     created: function () {
-        this.verConsultas();
         this.variable();
+        this.verConsultas();
     }
 });
 var barra = new Vue({

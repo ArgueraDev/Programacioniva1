@@ -28,14 +28,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Inicio</span></a>
+                <li class="nav-item">
+                    <a class="nav-link mostrar-inicio" data-modulo="inicio" data-form="inicio" href="#">Inicio</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="cuotas.html">Calculo de Cuota</a>
+                    <a class="nav-link mostrar-cuotas" data-modulo="cuotas" data-form="cuotas" href="#">Calculo de
+                        Cuota</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="informacion.html">Agregar Informacion</a>
+                    <a class="nav-link mostrar-informacion" data-modulo="informacion" data-form="informacion"
+                        href="#">Agregar Informacion</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" v-on:click="cerrar">Cerrar Sesion</a>
@@ -43,13 +45,13 @@
             </ul>
         </div>
     </nav>
-    <div id="row Contenedor" class="d-flex">
+    <div id="Contenedor" class="d-flex">
         <!--Consulta-->
-        <div class="well sidebar-nav p-1" id="consultas">
+        <div class="well sidebar-nav" id="consultas">
             <nav class="card-header bg-dark text-center text-light">Consultas</nav>
             <div class="col overflow-auto" id="base">
                 <consulta-card class="row p-2" v-for="valor in valores" :llave="valor.idConsulta"
-                    :contenido="valor.consulta">
+                    :contenido="valor.consulta" :nombre="valor.nombre" :fecha="valor.fecha">
                 </consulta-card>
             </div>
             <div class="col text-center ">
@@ -64,35 +66,19 @@
             </div>
         </div>
         <!--Informacion-->
-        <div class="col">
-            <div class="row m-0 bg-dark justify-content-center align-items-center">
-                <iframe width="560" height="315" src="https://www.youtube.com/embed/KLP2vPxZpfo" frameborder="0"
-                    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                    allowfullscreen></iframe>
+        <div class="container">
+            <div id="modulos">
+                <div class="modulos" id="vistas"></div>
             </div>
-
-            <div class="card text-center" id="listado">
-                <nav class="card-header bg-dark">
-                    <form class="form-inline my-2 my-lg-0">
-                        <input class="form-control" type="text" placeholder="Buscar" v-model="valor"
-                            v-on:keyup="verInformacion">
-                    </form>
-                </nav>
-                <info-card v-for="item in items" :llave="item.idInformacion" :titulo="item.titulo"
-                    :contenido="item.contenido">
-                </info-card>
-            </div>
-            <div class="row text-center p-2"> &copy; 2020 Finappza, Inc. Todos los derechos reservados.</div>
         </div>
     </div>
+    <div class="col text-center p-2"> &copy; 2020 Finappza, Inc. Todos los derechos reservados.</div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="public/js/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="public/vistas/inicio/consulta.js"></script>
-<script src="public/vistas/inicio/inicio.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-</script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
 </script>
@@ -100,5 +86,6 @@
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
 </script>
 <script src="public/alertifyjs/alertify.min.js"></script>
+<script src="public/js/app.js"></script>
 
 </html>

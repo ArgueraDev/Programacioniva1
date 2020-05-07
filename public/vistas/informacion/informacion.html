@@ -1,0 +1,37 @@
+<div class="card text-center" id="frm-informacion">
+    <div class="card-header bg-dark text-center text-light">
+        Agregar Informacion Financiera
+    </div>
+    <div class="card-body">
+        <div class="row p-2">
+            <div class="col-4">
+                Titulo
+            </div>
+            <div class="col-12">
+                <input type="text" required v-model="informacion.titulo" placeholder="Titulo" class="form-control">
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-4">
+                Contenido
+            </div>
+            <div class="col-12">
+                <input type="text" required v-model="informacion.contenido" placeholder="Contenido"
+                    class="form-control">
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-12 text-center">
+                <input type="button" class="btn btn-primary" value="Guardar" v-on:click="guardarInformacion">
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-12 text-center">
+                <div class="alert" role="alert">
+                    {{ informacion.msg }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="public/vistas/informacion/informacion.js"></script>

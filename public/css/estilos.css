@@ -1,7 +1,3 @@
-.modulos {
-	position: absolute;
-}
-
 #listado {
 	height: 100%;
 	width: 100%;
@@ -9,11 +5,16 @@
 }
 
 #base {
-	height: 350px;
-	width: 100%;
+	height: 400px;
+	width: 350px;
 	background: #ffffff;
 }
 
 body {
 	background: #ffffff;
+}
+
+#Contenedor {
+	height: 100%;
+	width: 100%;
 }

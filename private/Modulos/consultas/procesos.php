@@ -39,9 +39,10 @@ class consulta
     {
         if ($this->datos['accion'] === 'nuevo') {
             $this->db->consultas('
-                    INSERT INTO consultas (idLogin,consulta) VALUES(
+                    INSERT INTO consultas (idLogin,consulta,fecha) VALUES(
                         "' . $this->datos['idLogin'] . '",
-                        "' . $this->datos['consulta'] . '"
+                        "' . $this->datos['consulta'] . '",
+                        now()
                     )
                 ');
             $this->respuesta['msg'] = 'Envio Exitoso';
@@ -50,7 +51,8 @@ class consulta
     public function verConsultas($valor = '')
     {
         $this->db->consultas('
-            select * from consultas where consulta like "%' . $valor . '%"
+            select login.nombre, consultas.consulta, consultas.fecha from consultas, login 
+            where login.idLogin=consultas.idLogin ORDER BY idConsulta DESC
         ');
         return $this->respuesta = $this->db->obtener_datos();
     }
