@@ -1,0 +1,33 @@
+<div class="card text-center bg-dark text-center text-light" id="frm-recuperar">
+    <div class="card-header">
+        Restablecer Contraseña
+    </div>
+    <div class="card-body">
+        <div class="row p-2">
+            <div class="col-4">
+                Correo
+            </div>
+            <div class="col-12">
+                <input type="email" required="true" v-model="restablecer.correo" placeholder="Correo"
+                    class="form-control">
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-4">
+                Nueva Contraseña
+            </div>
+            <div class="col-12">
+                <input type="text" required="true" v-model="restablecer.contraseña" placeholder="contraseña"
+                    class="form-control">
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-12 text-center">
+                <input type="button" class="btn btn-primary" value="Restablecer" v-on:click="RecuperarContra">
+                <input type="button" class="btn btn-success" value="Regresar" id="Iniciar">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="public/vistas/login/contraseña.js"></script>

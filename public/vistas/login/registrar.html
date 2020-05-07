@@ -1,0 +1,38 @@
+<div class="card bg-dark text-center text-light" style="max-width: 48rem;" id="frm-registrar">
+    <div class="card-header">
+        Registrarse
+    </div>
+    <div class="card-body">
+        <div class="row p-2">
+            <div class="col-4">
+                Nombre
+            </div>
+            <div class="col-12">
+                <input type="text" v-model="registrar.nombre" placeholder="Nombre" class="form-control">
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-4">
+                Correo
+            </div>
+            <div class="col-12">
+                <input type="email" v-model="registrar.correo" placeholder="Correo" class="form-control">
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-4">
+                Contraseña
+            </div>
+            <div class="col-12">
+                <input type="text" v-model="registrar.contraseña" placeholder="contraseña" class="form-control">
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-12 text-center">
+                <input type="button" class="btn btn-primary" value="Registrar" v-on:click="guardarRegistro">
+                <input type="button" class="btn btn-success" value="Iniciar Sesion" id="Iniciar">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="public/vistas/login/registrar.js"></script>

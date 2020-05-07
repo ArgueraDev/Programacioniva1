@@ -13,14 +13,10 @@ var appRecuperar = new Vue({
                 if (resp.msg != 'Contraseña Restablecida') {
                     alertify.warning(resp.msg);
                 } else if (resp.msg == 'Contraseña Restablecida') {
-                    alertify.warning(resp.msg);
-                    this.restablecer.correo = "";
-                    this.restablecer.contraseña = "";
+                    alertify.success(resp.msg);
+                    location.href = "index.html";
                 }
             });
-        },
-        Volver: function () {
-            location.href = "index.html";
         },
         variable: function () {
             fetch(`private/Modulos/login/procesos.php?proceso=verVariable&login=${this.valor}`).then(resp => resp.json()).then(resp => {
@@ -36,3 +32,12 @@ var appRecuperar = new Vue({
         this.variable();
     }
 });
+
+function init() {
+    $("#Iniciar").click(function (e) {
+        $(`#vistas`).load(`public/vistas/login/login.html`, function () {
+            init();
+        });
+    });
+}
+init();

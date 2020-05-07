@@ -17,12 +17,6 @@ var applogin = new Vue({
         }
       });
     },
-    Registrarse: function () {
-      location.href = "registrar.html";
-    },
-    Recuperar: function () {
-      location.href = "contraseña.html";
-    },
     variable: function () {
       fetch(`private/Modulos/login/procesos.php?proceso=verVariable&login=${this.valor}`).then(resp => resp.json()).then(resp => {
         if (resp.msg == 'regrese') {
@@ -37,3 +31,18 @@ var applogin = new Vue({
     this.variable();
   }
 });
+
+function init() {
+  $("#Registrar").click(function (e) {
+    $(`#vistas`).load(`public/vistas/login/registrar.html`, function () {
+      init();
+    });
+  });
+
+  $("#Recuperar").click(function (e) {
+    $(`#vistas`).load(`public/vistas/login/contraseña.html`, function () {
+      init();
+    });
+  });
+}
+init();

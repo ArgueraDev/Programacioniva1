@@ -17,56 +17,14 @@
     <title> Educacion Financiera</title>
 </head>
 
-<body class="row m-0 bg-primary justify-content-center align-items-center vh-100">
-    <div class="card bg-dark text-center text-light" id="frm-login">
-        <div class="card-header">
-            Iniciar Sesión
-        </div>
-        <div class="card-body">
-            <div class="row p-2">
-                <div class="col-4">
-                    Correo
-                </div>
-                <div class="col-12">
-                    <input type="email" required v-model="login.correo" placeholder="Correo" class="form-control">
-                </div>
-            </div>
-            <div class="row p-2">
-                <div class="col-4">
-                    Contraseña
-                </div>
-                <div class="col-12">
-                    <input type="password" required v-model="login.contraseña" placeholder="contraseña"
-                        class="form-control">
-                </div>
-            </div>
-            <div class="row p-2">
-                <div class="col-12 text-center">
-                    <input type="button" class="btn btn-primary" value="Iniciar Sesión" v-on:click="iniciarSesion">
-                    <input type="button" class="btn btn-success" value="Registrarse" v-on:click="Registrarse">
-
-                </div>
-            </div>
-            <div class="row p-2">
-                <div class="col-12 text-center">
-                    <input type="button" class="btn btn-warning" value="Restablecer Contraseña" v-on:click="Recuperar">
-                </div>
-            </div>
-            <div class="row p-2">
-                <div class="col-12 text-center">
-                    <div class="alert" role="alert">
-                        {{ login.msg }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+<body class="row m-0 bg-primary justify-content-center align-items-center vh-100" id="vistas">
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script src="public/js/jquery-ui.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="public/alertifyjs/alertify.min.js"></script>
-<script src="public/vistas/login/login.js"></script>
+<script src="public/js/app2.js"></script>
 
 </html>

@@ -1,0 +1,37 @@
+<div class="card bg-dark text-center text-light" id="frm-login">
+    <div class="card-header">
+        Iniciar Sesión
+    </div>
+    <div class="card-body">
+        <div class="row p-2">
+            <div class="col-4">
+                Correo
+            </div>
+            <div class="col-12">
+                <input type="email" required v-model="login.correo" placeholder="Correo" class="form-control">
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-4">
+                Contraseña
+            </div>
+            <div class="col-12">
+                <input type="password" required v-model="login.contraseña" placeholder="contraseña"
+                    class="form-control">
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-12 text-center">
+                <input type="button" class="btn btn-primary" value="Iniciar Sesión" v-on:click="iniciarSesion">
+                <input type="button" class="btn btn-success" value="Registrarse" id="Registrar">
+
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-12 text-center">
+                <input type="button" class="btn btn-warning" value="Restablecer Contraseña" id="Recuperar">
+            </div>
+        </div>
+    </div>
+</div>
+<script src="public/vistas/login/login.js"></script>

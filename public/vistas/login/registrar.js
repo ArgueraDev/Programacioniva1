@@ -20,9 +20,6 @@ var appRegistrar = new Vue({
                 }
             });
         },
-        Iniciarsesion: function () {
-            location.href = "index.html";
-        },
         variable: function () {
             fetch(`private/Modulos/login/procesos.php?proceso=verVariable&login=${this.valor}`).then(resp => resp.json()).then(resp => {
                 if (resp.msg == 'regrese') {
@@ -37,3 +34,12 @@ var appRegistrar = new Vue({
         this.variable();
     }
 });
+
+function init() {
+    $("#Iniciar").click(function (e) {
+        $(`#vistas`).load(`public/vistas/login/login.html`, function () {
+            init();
+        });
+    });
+}
+init();
