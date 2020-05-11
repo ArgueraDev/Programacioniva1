@@ -12,25 +12,28 @@
                 <thead>
                     <tr>
                         <th colspan="5">
-                            <input type="text" v-model="valor" v-on:keyup="buscarAlumnos" placeholder="codigo o nombre" class="form-control">
+                            <input type="text" v-model="valor" v-on:keyup="buscarAlumnos" placeholder="codigo o nombre"
+                                class="form-control">
                         </th>
                     </tr>
                     <tr>
                         <th>CODIGO</th>
                         <th>NOMBRE</th>
                         <th>DIRECCION</th>
-                        <th>TELEFONO</th> 
+                        <th>TELEFONO</th>
                         <th> </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="mi_alumno in mis_alumnos" :key="mi_alumno.idAlumno" v-on:click="modificarAlumno(mi_alumno)" >
+                    <tr v-for="mi_alumno in mis_alumnos" :key="mi_alumno.idAlumno"
+                        v-on:click="modificarAlumno(mi_alumno)">
                         <td>{{ mi_alumno.codigo }}</td>
                         <td>{{ mi_alumno.nombre }}</td>
                         <td>{{ mi_alumno.direccion }}</td>
                         <td>{{ mi_alumno.telefono }}</td>
                         <td>
-                            <input v-on:click="eliminarAlumno(mi_alumno.idAlumno)" type="button" class="btn btn-outline-danger text-white" value="del">
+                            <input v-on:click="eliminarAlumno(mi_alumno.idAlumno)" type="button"
+                                class="btn btn-outline-danger text-white" value="del">
                         </td>
                     </tr>
                 </tbody>

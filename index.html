@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>APP ACADEMICA</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="public/css/estilos.css">
     <link rel="stylesheet" href="https://unpkg.com/vue-select@3.0.0/dist/vue-select.css">
+    <link rel="stylesheet" href="public/alertifyjs/css/alertify.min.css">
 </head>
+
 <body class="bg-secondary">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">::.. APP ACADEMICA ..::</a>
@@ -19,15 +23,18 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mostrar-alumnos" data-modulo="alumnos" data-form="alumnos" href="#">Alumnos</a>
-                </li> 
-                <li class="nav-item">
-                    <a class="nav-link mostrar-docentes" data-modulo="docentes" data-form="docentes" href="#">Docentes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mostrar-materias" data-modulo="materias" data-form="materias" href="#">Materias</a>
+                    <a class="nav-link mostrar-docentes" data-modulo="docentes" data-form="docentes"
+                        href="#">Docentes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mostrar-matricula" data-modulo="matriculas" data-form="matriculas" href="#">Matriculas</a>
+                    <a class="nav-link mostrar-materias" data-modulo="materias" data-form="materias"
+                        href="#">Materias</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mostrar-matricula" data-modulo="matriculas" data-form="matriculas"
+                        href="#">Matriculas</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mostrar-inscripcion" data-modulo="inscripcion" href="#">Inscripcion</a>
@@ -40,23 +47,24 @@
     </nav>
     <div class="container">
         <div id="modulos">
-        <div class="modulos" id="vistas-alumnos"></div>
-        <div class="modulos" id="vistas-buscar-alumnos"></div>
-        <div class="modulos" id="vistas-docentes"></div>
-        <div class="modulos" id="vistas-buscar-docentes"></div>
-        <div class="modulos" id="vistas-materias"></div>
-        <div class="modulos" id="vistas-buscar-materias"></div>
-        <div class="modulos" id="vistas-matriculas"></div>
-        <div class="modulos" id="vistas-buscar-matriculas"></div>
-        <div class="modulos" id="vistas-inscripcion"></div>
-        <div class="modulos" id="vistas-notas"></div>
+            <div class="modulos" id="vistas-alumnos"></div>
+            <div class="modulos" id="vistas-buscar-alumnos"></div>
+            <div class="modulos" id="vistas-docentes"></div>
+            <div class="modulos" id="vistas-buscar-docentes"></div>
+            <div class="modulos" id="vistas-materias"></div>
+            <div class="modulos" id="vistas-buscar-materias"></div>
+            <div class="modulos" id="vistas-matriculas"></div>
+            <div class="modulos" id="vistas-buscar-matriculas"></div>
+            <div class="modulos" id="vistas-inscripcion"></div>
+            <div class="modulos" id="vistas-notas"></div>
         </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="public/js/jquery-ui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-    <script src="public/js/app.js"></script>
-    
     <script src="https://unpkg.com/vue-select@3.0.0"></script>
+    <script src="public/alertifyjs/alertify.min.js"></script>
+    <script src="public/js/app.js"></script>
 </body>
+
 </html>

@@ -12,23 +12,26 @@
                 <thead>
                     <tr>
                         <th colspan="3">
-                            <input type="text" v-model="valor" v-on:keyup="buscarMatriculas" placeholder="codigo, nombre, dui o nit" class="form-control">
+                            <input type="text" v-model="valor" v-on:keyup="buscarMatriculas"
+                                placeholder="codigo, nombre, dui o nit" class="form-control">
                         </th>
                     </tr>
                     <tr>
                         <th>PERIODO</th>
-                        <th>ALUMNNO</th> 
+                        <th>ALUMNNO</th>
                         <th>FECHA MATRICULA</th>
                         <th> </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="mi_matricula in mis_matriculas" :key="mi_matricula.idMatricula" v-on:click="modificarMatricula(mi_matricula)" >
+                    <tr v-for="mi_matricula in mis_matriculas" :key="mi_matricula.idMatricula"
+                        v-on:click="modificarMatricula(mi_matricula)">
                         <td>{{ mi_matricula.periodo.label }}</td>
                         <td>{{ mi_matricula.alumno.label }}</td>
                         <td>{{ mi_matricula.f }}</td>
                         <td>
-                            <input v-on:click="eliminarMatricula(mi_matricula.idMatricula)" type="button" class="btn btn-outline-danger text-white" value="del">
+                            <input v-on:click="eliminarMatricula(mi_matricula.idMatricula)" type="button"
+                                class="btn btn-outline-danger text-white" value="del">
                         </td>
                     </tr>
                 </tbody>

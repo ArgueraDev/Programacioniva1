@@ -41,19 +41,21 @@
             <div class="row row-cols-1 p-2">
                 <div class="row-col text-center">
                     <div class="col">
-                        <input id="btnGuardarMatriculas" type="submit" class="btn btn-outline-primary text-white" value="Guardar">
+                        <input id="btnGuardarMatriculas" type="submit" class="btn btn-outline-primary text-white"
+                            value="Guardar">
                         <input type="reset" class="btn btn-outline-warning text-white" value="Limpiar">
-                        <input type="button" class="btn btn-outline-success mostrar-buscar-matriculas text-white" data-modulo="matriculas" data-form="buscar-matriculas" value="Buscar" >
+                        <input type="button" class="btn btn-outline-success mostrar-buscar-matriculas text-white"
+                            data-modulo="matriculas" data-form="buscar-matriculas" value="Buscar">
+                    </div>
                 </div>
-            </div>
-            <div class="row row-cols-1 p-2">
-                <div class="row-col text-center">
-                    <div class="col">
-                        <div class="alert alert-success" role="alert">{{ matricula.msg }}</div>
+                <div class="row row-cols-1 p-2">
+                    <div class="row-col text-center">
+                        <div class="col">
+                            <div class="alert alert-success" role="alert">{{ matricula.msg }}</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </form>
 <script src="public/vistas/matriculas/matriculas.js"></script>

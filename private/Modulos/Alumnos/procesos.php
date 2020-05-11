@@ -12,7 +12,7 @@ print_r(json_encode($alumno->respuesta));
 class alumno{
     private $datos = array(), $db;
     public $respuesta = ['msg'=>'correcto'];
-
+    
     public function __construct($db){
         $this->db=$db;
     }
@@ -21,13 +21,13 @@ class alumno{
         $this->validar_datos();
     }
     private function validar_datos(){
-        if( empty($this->datos['codigo']) ){
+        if( empty(trim($this->datos['codigo'])) ){
             $this->respuesta['msg'] = 'por favor ingrese el codigo del estudiante';
         }
-        if( empty($this->datos['nombre']) ){
+        if( empty(trim($this->datos['nombre'])) ){
             $this->respuesta['msg'] = 'por favor ingrese el nombre del estudiante';
         }
-        if( empty($this->datos['direccion']) ){
+        if( empty( trim($this->datos['direccion'])) ){
             $this->respuesta['msg'] = 'por favor ingrese la direccion del estudiante';
         }
         $this->almacenar_alumno();
@@ -46,7 +46,7 @@ class alumno{
                 $this->respuesta['msg'] = 'Registro insertado correctamente';
             } else if( $this->datos['accion']==='modificar' ){
                 $this->db->consultas('
-                   UPDATE alumnos SET
+                    UPDATE alumnos SET
                         codigo     = "'. $this->datos['codigo'] .'",
                         nombre     = "'. $this->datos['nombre'] .'",
                         direccion  = "'. $this->datos['direccion'] .'",
@@ -54,6 +54,8 @@ class alumno{
                     WHERE idAlumno = "'. $this->datos['idAlumno'] .'"
                 ');
                 $this->respuesta['msg'] = 'Registro actualizado correctamente';
+            } else{
+                $this->respuesta['msg'] = 'Error no se envio la accion a realizar';
             }
         }
     }
