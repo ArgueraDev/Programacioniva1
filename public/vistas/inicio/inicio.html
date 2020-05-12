@@ -3,12 +3,18 @@
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 <div class="card text-center" id="listado">
-    <nav class="card-header bg-dark">
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control" type="text" placeholder="Buscar" v-model="valor" v-on:keyup="verInformacion">
-        </form>
-    </nav>
-    <div class="row row-cols-1 row-cols-md-3">
+    <div class="card-header bg-dark">
+        <div class="row">
+            <div class="col-2">
+                <input type="button" id="contribuir" class="btn btn-primary" value="Contribuir">
+            </div>
+            <div class="col">
+                <input class="form-control" type="text" placeholder="Buscar" v-model="valor"
+                    v-on:keyup="verInformacion">
+            </div>
+        </div>
+    </div>
+    <div id="ver" class="row row-cols-1 row-cols-md-3">
         <info-card v-for="item in items" :llave="item.idInformacion" :titulo="item.titulo" :contenido="item.contenido">
         </info-card>
     </div>

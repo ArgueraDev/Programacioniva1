@@ -1,37 +1,32 @@
-<div class="card text-center" id="frm-informacion">
-    <div class="card-header bg-dark text-center text-light">
-        Agregar Informacion Financiera
-    </div>
-    <div class="card-body">
-        <div class="row p-2">
-            <div class="col-4">
-                Titulo
-            </div>
-            <div class="col-12">
-                <input type="text" required v-model="informacion.titulo" placeholder="Titulo" class="form-control">
-            </div>
+<form v-on:submit.prevent="verIdLogin" id="frm-informacion" method="post">
+    <div class="card text-center">
+        <div class="card-header bg-dark text-center text-light">
+            Contribuir Con Información
         </div>
-        <div class="row p-2">
-            <div class="col-4">
-                Contenido
+        <div class="card-body">
+            <div class="col">
+                <div class="row p-2">
+                    Titulo
+                </div>
+                <div class="row p-2">
+                    <input type="text" required v-model="informacion.titulo" placeholder="Titulo" class="form-control">
+                </div>
             </div>
-            <div class="col-12">
-                <input type="text" required v-model="informacion.contenido" placeholder="Contenido"
-                    class="form-control">
+            <div class="col">
+                <div class="row p-2">
+                    Contenido
+                </div>
+                <div class="row p-2">
+                    <textarea class="form-control" required rows="5" v-model="informacion.contenido"
+                        placeholder="Contenido"></textarea>
+                </div>
             </div>
-        </div>
-        <div class="row p-2">
-            <div class="col-12 text-center">
-                <input type="button" class="btn btn-primary" value="Guardar" v-on:click="guardarInformacion">
-            </div>
-        </div>
-        <div class="row p-2">
-            <div class="col-12 text-center">
-                <div class="alert" role="alert">
-                    {{ informacion.msg }}
+            <div class="row p-2">
+                <div class="col-12">
+                    <input type="submit" class="btn btn-primary" value="Contribuir">
                 </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 <script src="public/vistas/informacion/informacion.js"></script>

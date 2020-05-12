@@ -1,0 +1,25 @@
+<form id="frm-moderar" method="post">
+    <div class="card text-center">
+        <div class="card-header bg-dark text-center text-light">
+            Moderar Información
+        </div>
+        <div class="card-body text-center">
+            <moderador-card v-for="item in items" :llave="item.idModerar" :titulo="item.titulo"
+                :contenido="item.contenido" :nombre="item.nombre" :fecha="item.fecha">
+            </moderador-card>
+
+            <tbody>
+                <tr v-for="item in items" :key="item.idModerar"
+                    v-on:click="agregar(item.idModerar)">
+                    <td>{{ item.contenido }}</td>
+                    <td>
+                        <input type="button"
+                            class="btn btn-outline-danger text-white" value="del">
+                    </td>
+                </tr>
+            </tbody>
+
+        </div>
+    </div>
+</form>
+<script src="public/vistas/moderar/moderar.js"></script>

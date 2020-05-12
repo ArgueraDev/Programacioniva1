@@ -29,18 +29,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link mostrar-inicio" data-modulo="inicio" data-form="inicio" href="#">Inicio</span></a>
+                    <a class="nav-link mostrar-inicio" data-modulo="inicio" data-form="inicio"
+                        href="#">Inicio</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mostrar-cuotas" data-modulo="cuotas" data-form="cuotas" href="#">Calculo de
                         Cuota</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mostrar-informacion" data-modulo="informacion" data-form="informacion"
-                        href="#">Agregar Informacion</a>
+                    <a class="nav-link mostrar-moderar" data-modulo="moderar" data-form="moderar"
+                        href="#">Información</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#" v-on:click="cerrar">Cerrar Sesion</a>
+                    <a class="nav-link" href="#" v-on:click="cerrar">Cerrar Sesión</a>
                 </li>
             </ul>
         </div>
@@ -56,7 +57,8 @@
             </div>
             <div class="col text-center ">
                 <div class="row p-2">
-                    <input type="text" v-model="consultas.consulta" placeholder="Escriba...." class="form-control">
+                    <textarea class="form-control" rows="3" v-model="consultas.consulta"
+                        placeholder="Escriba...."></textarea>
                 </div>
                 <div class="row p-2">
                     <div class="col-12 text-center">

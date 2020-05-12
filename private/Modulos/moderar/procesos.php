@@ -1,57 +1,60 @@
 <?php 
 include('../../Config/Config.php');
-$informacion = new informacion($conexion);
+$moderar = new moderar($conexion);
 
 $proceso = '';
 if( isset($_GET['proceso']) && strlen($_GET['proceso'])>0 ){
 	$proceso = $_GET['proceso'];
 }
-$informacion->$proceso( $_GET['informacion'] );
-print_r(json_encode($informacion->respuesta));
+$moderar->$proceso( $_GET['moderar'] );
+print_r(json_encode($moderar->respuesta));
 
-class informacion{
+class moderar{
     private $datos = array(), $db;
     public $respuesta = ['msg'=>'correcto'];
 
     public function __construct($db){
         $this->db=$db;
     }
-    public function recibirDatos($informacion){
-        $this->db->consultas('select * from moderar where idModerar="'. $informacion .'"');
-        $this->respuesta = $this->db->obtener_datos();
-        print_r ($this->respuesta);
+    public function recibirDatos($moderar){
+        $this->datos = json_decode($moderar, true);
+        $this->validar_datos();
     }
     private function validar_datos(){
         if( empty(trim($this->datos['titulo'])) ){
             $this->respuesta['msg'] = 'por favor ingrese un titulo';
-        }else if( empty(trim($this->datos['contenido'])) ){
+        } else if( empty(trim($this->datos['contenido'])) ){
             $this->respuesta['msg'] = 'por favor ingrese un contenido';
+        } else if( empty(trim($this->datos['idLogin'])) ){
+            $this->respuesta['msg'] = 'no hay ID';
+        } else {
+            $this->almacenar_registro();
         }
-        $this->almacenar_registro();
     }
     private function almacenar_registro(){
         if( $this->respuesta['msg']==='correcto' ){
             if( $this->datos['accion']==='nuevo' ){
                 $this->db->consultas('
-                    INSERT INTO informacion (titulo,contenido) VALUES(
+                    INSERT INTO moderar (idLogin,titulo,contenido,fecha) VALUES(
+                        "'. $this->datos['idLogin'] .'",
                         "'. $this->datos['titulo'] .'",
-                        "'. $this->datos['contenido'] .'"
+                        "'. $this->datos['contenido'] .'",
+                        now()
                     )
                 ');
                 $this->respuesta['msg'] = 'Registro guardado correctamente';
             } 
         }
     }
-    public function buscarInformacion($valor=''){
-        $this->db->consultas('select * from informacion where titulo like "%'.$valor.'%" or contenido like "%'.$valor.'%"
-        ORDER BY idInformacion DESC');
+    public function verContribucion(){
+        $this->db->consultas('select login.nombre, moderar.titulo, moderar.contenido, moderar.fecha 
+        from login, moderar where login.idLogin = moderar.idLogin');
         return $this->respuesta = $this->db->obtener_datos();
     }
-    public function eliminarInformacion($idInformacion=''){
+    public function eliminarInformacion($idModerar=''){
         $this->db->consultas('
-            delete informacion
-            from informacion
-            where informacion.idInformacion = "'.$idInformacion.'"
+            delete moderar from moderar
+            where moderar.idModerar = "'.$idModerar.'"
         ');
         $this->respuesta['msg'] = 'Registro eliminado correctamente';
     }

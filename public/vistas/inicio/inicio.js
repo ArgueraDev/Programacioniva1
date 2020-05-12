@@ -26,3 +26,7 @@ var appInicio = new Vue({
         this.verInformacion();
     }
 })
+
+$("#contribuir").click(function (e) {
+    $(`#vistas`).load(`public/vistas/informacion/informacion.html`);
+});

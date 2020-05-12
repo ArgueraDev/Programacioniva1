@@ -3,6 +3,7 @@ var appInformacion = new Vue({
     data: {
         informacion: {
             idInformacion: 0,
+            idLogin: 0,
             accion: 'nuevo',
             titulo: '',
             contenido: '',
@@ -10,8 +11,8 @@ var appInformacion = new Vue({
         }
     },
     methods: {
-        guardarInformacion() {
-            fetch(`private/Modulos/informacion/procesos.php?proceso=recibirDatos&informacion=${JSON.stringify(this.informacion)}`).then(resp => resp.json()).then(resp => {
+        guardarInformacion: function () {
+            fetch(`private/Modulos/moderar/procesos.php?proceso=recibirDatos&moderar=${JSON.stringify(this.informacion)}`).then(resp => resp.json()).then(resp => {
                 if (resp.msg != 'Registro guardado correctamente') {
                     alertify.warning(resp.msg);
                 } else {
@@ -20,8 +21,15 @@ var appInformacion = new Vue({
                 }
             });
         },
-        LimpiarDatos() {
+        verIdLogin: function () {
+            fetch(`private/Modulos/consultas/procesos.php?proceso=idLogin&consulta=""`).then(resp => resp.json()).then(resp => {
+                this.informacion.idLogin = resp[0].idLogin;
+                this.guardarInformacion();
+            });
+        },
+        LimpiarDatos: function () {
             this.informacion.idInformacion = 0;
+            this.informacion.idLogin = 0;
             this.informacion.titulo = '';
             this.informacion.contenido = '';
             this.informacion.accion = 'nuevo';

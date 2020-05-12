@@ -4,10 +4,13 @@
 	background: #ffffff;
 }
 
-#base {
-	height: 400px;
-	width: 350px;
+#consultas {
+	width: 25%;
 	background: #ffffff;
+}
+
+#base {
+	height: 50%;
 }
 
 body {
@@ -17,4 +20,10 @@ body {
 #Contenedor {
 	height: 100%;
 	width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+	#consultas {
+		display: none;
+	}
 }
