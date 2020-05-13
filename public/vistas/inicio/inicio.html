@@ -14,9 +14,22 @@
             </div>
         </div>
     </div>
-    <div id="ver" class="row row-cols-1 row-cols-md-3">
-        <info-card v-for="item in items" :llave="item.idInformacion" :titulo="item.titulo" :contenido="item.contenido">
-        </info-card>
+    <div class="card-body m-3">
+        <table>
+            <tbody>
+                <tr v-for="item in items" :key="item.idInformacion">
+                    <td>
+                        <div class="card border-0">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ item.titulo }}</h5>
+                                <p class="card-text">{{ item.contenido }}</p>
+                            </div>
+                            <div class="rw-ui-container"></div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 <script src="public/vistas/inicio/inicio.js"></script>

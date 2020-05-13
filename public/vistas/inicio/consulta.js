@@ -85,6 +85,7 @@ var barra = new Vue({
         usuario: function () {
             fetch(`private/Modulos/consultas/procesos.php?proceso=idLogin&consulta=""`).then(resp => resp.json()).then(resp => {
                 this.Usuario.idLogin = resp[0].idLogin;
+                appInicio.idLogin = resp[0].idLogin;
                 this.Usuario.nombre = resp[0].nombre;
                 document.getElementById('imgperfil').src = resp[0].imagen;
                 if (resp[0].tipo == 'admin') {
