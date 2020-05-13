@@ -1,47 +1,56 @@
-<div class="card text-center">
-    <div class="card-header bg-dark text-center text-light">
-        Calculo de Cuota de Prestamo
-    </div>
-    <div class="card-body row" id="cuotas" v-on:submit.prevent="calcularCuota">
-        <div class="col">
-            <div class="row p-2">
-                <div class="col-4">
-                    Monto
+<form id="cuotas" v-on:submit.prevent="calcularCuota" method="post">
+    <div class="card text-center">
+        <div class="card-header bg-dark text-center text-light">
+            Calculo de Cuota de Prestamo
+        </div>
+        <div class="card-body row">
+            <div class="col">
+                <div class="row p-2">
+                    <div class="col">
+                        Monto
+                    </div>
+                    <div class="col-8">
+                        <input type="number" step="0.01" required v-model="cuota.monto" placeholder="$$"
+                            class="form-control">
+                    </div>
                 </div>
-                <div class="col-10">
-                    <input type="number" step="0.01" required v-model="cuota.monto" placeholder="$$"
-                        class="form-control">
+                <div class="row p-2">
+                    <div class="col">
+                        Plazo (años)
+                    </div>
+                    <div class="col-8">
+                        <input type="number" required v-model="cuota.plazo" placeholder="años" class="form-control">
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col">
+                        Tipo de Prestamo
+                    </div>
+                    <div class="col-8">
+                        <v-select v-model="cuota.prestamo" :options="prestamos" placeholder="Seleccione Prestamo" />
+                    </div>
+                </div>
+                <div class="row p-2">
+                    <div class="col-12 text-center">
+                        <input type="submit" class="btn btn-primary" value="Calcular">
+                    </div>
                 </div>
             </div>
-            <div class="row p-2">
-                <div class="col-4">
-                    Plazo (años)
+            <div class="col">
+                <div class="row p-2">
+                    <div class="col">
+                        Couta Mensual por Banco
+                    </div>
                 </div>
-                <div class="col-10">
-                    <input type="number" required v-model="cuota.plazo" placeholder="años" class="form-control">
-                </div>
-            </div>
-            <div class="row p-2">
-                <div class="col-4">
-                    Tipo de Prestamo
-                </div>
-                <div class="col-10">
-                    <v-select v-model="cuota.prestamo" :options="Prestamos" placeholder="Seleccione Prestamo" />
-                </div>
-            </div>
-            <div class="row p-2">
-                <div class="col-12 text-center">
-                    <input type="button" class="btn btn-primary" value="Calcular" v-on:click="calcularCuota">
+                <div class="row p-2">
+                    <div class="col-10">
+                        <p class="card-text text-align-left">
+                            <pre> {{ cuota.msg }} </pre>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="row p-2">
-                <div class="col-10">
-                    <p class="card-text">{{ cuota.msg }}</p>
-                </div>
-            </div>
-        </div>
     </div>
-</div>
+</form>
 <script src="public/vistas/cuotas/cuotas.js"></script>

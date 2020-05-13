@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/vue-select@3.0.0/dist/vue-select.css">
     <link rel="stylesheet" href="public/css/estilos.css">
     <link rel="stylesheet" href="public/alertifyjs/css/alertify.min.css">
 
@@ -45,7 +46,8 @@
         <div class="navbar-text pull-right dropdown">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ Usuario.nombre }} <img id="imgperfil" src="img/usuario.png" width="30" height="30" class="rounded-circle">
+                {{ Usuario.nombre }} <img id="imgperfil" src="img/usuario.png" width="30" height="30"
+                    class="rounded-circle">
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item text-dark mostrar-perfil" data-modulo="perfil" data-form="perfil"
@@ -86,9 +88,7 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="public/js/vue.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-<script src="public/vistas/inicio/consulta.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
 </script>
@@ -96,6 +96,10 @@
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
+<script src="https://unpkg.com/vue-select@3.0.0"></script>
+<script src="public/vistas/inicio/consulta.js"></script>
+<script src="public/js/jquery-ui.js"></script>
+<script src="public/js/vue.js"></script>
 <script src="public/alertifyjs/alertify.min.js"></script>
 <script src="public/js/app.js"></script>
 
