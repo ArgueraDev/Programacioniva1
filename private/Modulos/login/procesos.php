@@ -48,10 +48,12 @@ class login
     {
         if ($this->datos['accion'] === 'nuevo') {
             $this->db->consultas('
-                    INSERT INTO login (nombre,correo,contraseña) VALUES(
+                    INSERT INTO login (nombre,correo,contraseña,tipo,imagen) VALUES(
                         "' . $this->datos['nombre'] . '",
                         "' . $this->datos['correo'] . '",
-                        "' . $this->datos['contraseña'] . '"
+                        "' . $this->datos['contraseña'] . '",
+                        "usuario",
+                        "' . $this->datos['imagen'] . '"
                     )
                 ');
             $this->respuesta['msg'] = 'Registro insertado correctamente';
@@ -150,7 +152,8 @@ class login
         $this->db->consultas('
                     UPDATE login SET
                         nombre      = "' . $this->datos['nombre'] . '",
-                        contraseña  = "' . $this->datos['contraseña'] . '"
+                        contraseña  = "' . $this->datos['contraseña'] . '",
+                        imagen      = "' . $this->datos['imagen'] . '"
                     WHERE idLogin   = "' . $this->datos['idLogin'] . '"
                 ');
         $this->respuesta['msg'] = 'Usuario Actualizado';

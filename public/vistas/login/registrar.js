@@ -6,7 +6,8 @@ var appRegistrar = new Vue({
             accion: 'nuevo',
             nombre: '',
             correo: '',
-            contraseña: ''
+            contraseña: '',
+            imagen: 'img/usuario.png'
         }
     },
     methods: {

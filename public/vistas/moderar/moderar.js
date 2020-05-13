@@ -1,4 +1,4 @@
-var appInformacion = new Vue({
+var appModerar = new Vue({
     el: '#frm-moderar',
     data: {
         items: [],
