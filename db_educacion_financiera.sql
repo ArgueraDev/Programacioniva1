@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-05-2020 a las 02:20:39
+-- Tiempo de generación: 13-05-2020 a las 19:30:25
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.2
 
@@ -79,16 +79,17 @@ CREATE TABLE `login` (
   `nombre` varchar(100) NOT NULL,
   `correo` varchar(100) NOT NULL,
   `contraseña` varchar(50) NOT NULL,
-  `tipo` varchar(25) NOT NULL
+  `tipo` varchar(25) NOT NULL,
+  `imagen` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `login`
 --
 
-INSERT INTO `login` (`idLogin`, `nombre`, `correo`, `contraseña`, `tipo`) VALUES
-(1, 'Roberto', 'roberto@ugb.sv', '12345', 'admin'),
-(11, 'Yasmin', 'yasmin@ugb.sv', '123456', 'usuario');
+INSERT INTO `login` (`idLogin`, `nombre`, `correo`, `contraseña`, `tipo`, `imagen`) VALUES
+(1, 'Roberto', 'roberto@ugb.sv', '12345', 'admin', 'https://res.cloudinary.com/drxvajxbt/image/upload/v1589389825/q9n48puctzlfkpblrrwn.png'),
+(11, 'Yasmin', 'yasmin@ugb.sv', '123456', 'usuario', 'img/usuario.png');
 
 -- --------------------------------------------------------
 

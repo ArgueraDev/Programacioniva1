@@ -1,3 +1,5 @@
+Vue.component('v-select', VueSelect.VueSelect);
+
 var appcuota = new Vue({
   el: '#cuotas',
   data: {
@@ -28,6 +30,9 @@ var appcuota = new Vue({
         this.cuota.msg = "Cuota Mensual: $" + coutaM.toFixed(2);
         this.Limpiar();
       }
+    },
+    calculo: function (monto, plazo, prestamo) {
+
     },
     Limpiar: function () {
       this.cuota.monto = "";
