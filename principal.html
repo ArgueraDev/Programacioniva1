@@ -37,13 +37,21 @@
                         Cuota</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mostrar-moderar" data-modulo="moderar" data-form="moderar"
+                    <a id="permiso" class="nav-link mostrar-moderar" data-modulo="moderar" data-form="moderar"
                         href="#">Información</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" v-on:click="cerrar">Cerrar Sesión</a>
-                </li>
             </ul>
+        </div>
+        <div class="navbar-text pull-right dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ Usuario.nombre }} <img src="img/usuario.png" width="30" height="30" class="rounded-circle">
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item text-dark mostrar-perfil" data-modulo="perfil" data-form="perfil"
+                    href="#">Perfil</a>
+                <a class="dropdown-item text-dark" v-on:click="cerrar" href="#">Cerrar Sesión</a>
+            </div>
         </div>
     </nav>
     <div id="Contenedor" class="d-flex">

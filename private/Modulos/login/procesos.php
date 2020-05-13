@@ -128,4 +128,31 @@ class login
     {
         session_destroy();
     }
+
+    public function Modificar($login)
+    {
+        $this->datos = json_decode($login, true);
+        $this->validar_modificacion();
+    }
+    private function validar_modificacion()
+    {
+        if (empty(trim($this->datos['nombre']))) {
+            $this->respuesta['msg'] = 'por favor ingrese su Nombre';
+        } else if (empty(trim($this->datos['contraseña']))) {
+            $this->respuesta['msg'] = 'por favor ingrese la nueva contraseña';
+        } else {
+            $this->actualizar_usuario();
+        }
+    }
+
+    private function actualizar_usuario()
+    {
+        $this->db->consultas('
+                    UPDATE login SET
+                        nombre      = "' . $this->datos['nombre'] . '",
+                        contraseña  = "' . $this->datos['contraseña'] . '"
+                    WHERE idLogin   = "' . $this->datos['idLogin'] . '"
+                ');
+        $this->respuesta['msg'] = 'Usuario Actualizado';
+    }
 }

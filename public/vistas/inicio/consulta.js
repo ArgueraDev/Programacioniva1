@@ -49,13 +49,6 @@ var appconsulta = new Vue({
             this.consultas.consulta = '';
             this.consultas.accion = 'nuevo';
         },
-        variable: function () {
-            fetch(`private/Modulos/consultas/procesos.php?proceso=verVariable&consulta=${this.valor2}`).then(resp => resp.json()).then(resp => {
-                if (resp.msg == 'Registrese') {
-                    location.href = "index.html";
-                }
-            });
-        },
         verIdLogin: function () {
             fetch(`private/Modulos/consultas/procesos.php?proceso=idLogin&consulta=""`).then(resp => resp.json()).then(resp => {
                 this.consultas.idLogin = resp[0].idLogin;
@@ -64,17 +57,44 @@ var appconsulta = new Vue({
         }
     },
     created: function () {
-        this.variable();
         this.verConsultas();
     }
 });
 var barra = new Vue({
     el: '#barra',
+    data: {
+        Usuario: {
+            idLogin: 0,
+            nombre: ""
+        }
+    },
     methods: {
         cerrar: function () {
-            fetch(`private/Modulos/consultas/procesos.php?proceso=cerrar&consulta=${this.valor2}`).then(resp => resp.json()).then(resp => {
+            fetch(`private/Modulos/consultas/procesos.php?proceso=cerrar&consulta=""`).then(resp => resp.json()).then(resp => {
                 location.href = "index.html";
             });
+        },
+        variable: function () {
+            fetch(`private/Modulos/consultas/procesos.php?proceso=verVariable&consulta=""`).then(resp => resp.json()).then(resp => {
+                if (resp.msg == 'Registrese') {
+                    location.href = "index.html";
+                }
+            });
+        },
+        usuario: function () {
+            fetch(`private/Modulos/consultas/procesos.php?proceso=idLogin&consulta=""`).then(resp => resp.json()).then(resp => {
+                this.Usuario.idLogin = resp[0].idLogin;
+                this.Usuario.nombre = resp[0].nombre;
+                if (resp[0].tipo == 'admin') {
+                    $("#permiso").show()
+                } else {
+                    $("#permiso").hide()
+                }
+            });
         }
+    },
+    created: function () {
+        this.variable();
+        this.usuario();
     }
 });

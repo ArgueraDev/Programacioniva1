@@ -13,7 +13,7 @@ var appInformacion = new Vue({
     methods: {
         guardarInformacion: function () {
             fetch(`private/Modulos/moderar/procesos.php?proceso=recibirDatos&moderar=${JSON.stringify(this.informacion)}`).then(resp => resp.json()).then(resp => {
-                if (resp.msg != 'Registro guardado correctamente') {
+                if (resp.msg != 'Gracias por su aporte') {
                     alertify.warning(resp.msg);
                 } else {
                     alertify.success(resp.msg);
