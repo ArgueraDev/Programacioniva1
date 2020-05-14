@@ -59,7 +59,7 @@ class consulta
 
     public function verVariable($valor = '')
     {
-        if (isset($_SESSION['correo'])) {
+        if (isset($_SESSION['idLogin'])) {
             $this->respuesta['msg'] = 'Bienvenido';
         } else {
             $this->respuesta['msg'] = 'Registrese';
@@ -72,7 +72,7 @@ class consulta
 
     public function idLogin($valor = '')
     {
-        $this->db->consultas('select * from login where correo ="' . $_SESSION['correo'] . '"');
+        $this->db->consultas('select * from login where idLogin ="' . $_SESSION['idLogin'] . '"');
         $this->respuesta = $this->db->obtener_datos();
     }
 }

@@ -78,7 +78,7 @@ class login
             if (empty($this->respuesta)) {
                 $this->respuesta['msg'] = 'Correo y Contraseña no coinciden';
             } else {
-                $_SESSION['correo'] = $this->datos['correo'];
+                $_SESSION['idLogin'] = $this->respuesta[0]['idLogin'];
                 $this->respuesta['msg'] = 'Bienvenido';
             }
         }
@@ -120,7 +120,7 @@ class login
 
     public function verVariable($valor = '')
     {
-        if (!isset($_SESSION['correo'])) {
+        if (!isset($_SESSION['idLogin'])) {
             $this->respuesta['msg'] = 'Bienvenido';
         } else {
             $this->respuesta['msg'] = 'regrese';

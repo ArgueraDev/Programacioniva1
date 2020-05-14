@@ -72,13 +72,13 @@ var barra = new Vue({
     methods: {
         cerrar: function () {
             fetch(`private/Modulos/consultas/procesos.php?proceso=cerrar&consulta=""`).then(resp => resp.json()).then(resp => {
-                location.href = "index.html";
+                location.href = "/programacioniva1";
             });
         },
         variable: function () {
             fetch(`private/Modulos/consultas/procesos.php?proceso=verVariable&consulta=""`).then(resp => resp.json()).then(resp => {
                 if (resp.msg == 'Registrese') {
-                    location.href = "index.html";
+                    location.href = "/programacioniva1";
                 }
             });
         },
