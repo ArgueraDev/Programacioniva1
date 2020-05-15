@@ -60,7 +60,22 @@ class informacion
     }
     public function buscarInformacion($valor = '')
     {
-        $this->db->consultas('select * from informacion where titulo like "%' . $valor . '%" or contenido like "%' . $valor . '%"
+        $this->respuesta = [];
+        $this->db->consultas('select * from informacion where tipo like "%Información General%" and  titulo like "%' . $valor . '%" or contenido like "%' . $valor . '%"
+        ORDER BY idInformacion DESC');
+        return $this->respuesta = $this->db->obtener_datos();
+    }
+    public function buscarbancaria($valor = '')
+    {
+        $this->respuesta = [];
+        $this->db->consultas('select * from informacion where tipo like "%Información Bancaria%" and titulo like "%' . $valor . '%" or contenido like "%' . $valor . '%"
+        ORDER BY idInformacion DESC');
+        return $this->respuesta = $this->db->obtener_datos();
+    }
+    public function buscardiccionario($valor = '')
+    {
+        $this->respuesta = [];
+        $this->db->consultas('select * from informacion where tipo like "%conceptos básicos%" and titulo like "%' . $valor . '%" or contenido like "%' . $valor . '%"
         ORDER BY idInformacion DESC');
         return $this->respuesta = $this->db->obtener_datos();
     }
