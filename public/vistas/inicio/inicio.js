@@ -2,7 +2,7 @@ var appInicio = new Vue({
     el: '#listado',
     data: {
         items: [],
-        valor: ''
+        valor: '',
     },
     methods: {
         verInformacion: function () {

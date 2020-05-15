@@ -1,10 +1,16 @@
-<form v-on:submit.prevent="verIdLogin" id="frm-informacion" method="post">
+<form v-on:submit.prevent="verIdLogin" enctype="multipart/form-data" id="frm-informacion" method="post">
     <div class="card text-center">
         <div class="card-header bg-dark text-center text-light">
             Contribuir Con Información
         </div>
         <div class="card-body">
-            <div class="col">
+            <div class="col-ms-6">
+                <label class="btn btn-file">
+                    <input @change="obtenerimagen" value="" name="archivo" type="file" class="d-none">
+                    <img src="img/add.png" class="img-responsive" height="200" alt="Subir" id="imagenif">
+                </label>
+            </div>
+            <div class="col-ms-6">
                 <div class="row p-2">
                     Titulo
                 </div>
@@ -12,7 +18,15 @@
                     <input type="text" required v-model="informacion.titulo" placeholder="Titulo" class="form-control">
                 </div>
             </div>
-            <div class="col">
+            <div class="col-ms-6">
+                <div class="row p-2">
+                    Tipo de Informacion
+                </div>
+                <div class="col">
+                    <v-select v-model="informacion.tipo" :options="tipos" placeholder="Seleccione el Tipo" />
+                </div>
+            </div>
+            <div class="col-ms-6">
                 <div class="row p-2">
                     Contenido
                 </div>
@@ -21,8 +35,8 @@
                         placeholder="Contenido"></textarea>
                 </div>
             </div>
-            <div class="row p-2">
-                <div class="col-12">
+            <div class="col-ms-6">
+                <div class="row p-2">
                     <input type="submit" class="btn btn-primary" value="Contribuir">
                 </div>
             </div>

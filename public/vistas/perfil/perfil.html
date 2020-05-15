@@ -1,18 +1,16 @@
-<form v-on:submit.prevent="Editar" id="frm-perfil" method="post">
+<form v-on:submit.prevent="Editar" enctype="multipart/form-data" id="frm-perfil" method="post">
     <div class="card text-center">
         <div class="card-header bg-dark text-center text-light">
             Mi Perfil
         </div>
         <div class="card-body">
-            <div class="row p-2">
-                <div class="col-8">
-                    <img src="img/usuario.png" width="200" height="200" class="rounded-circle" id="img-preview">
-                </div>
-            </div>
-            <div class="row p-2">
-                <div class="col-6">
-                    <input type="file" id="img-uploader" disabled>
-                </div>
+            <div class="col-ms-6">
+                <label class="btn btn-file">
+                    <input @change="obtenerimagen" disabled value="" name="archivo" type="file" class="d-none"
+                        id="img-uploader">
+                    <img src="img/usuario.png" class="img-responsive rounded-circle" width="200" height="200"
+                        alt="Subir" id="img-preview">
+                </label>
             </div>
             <div class="row p-2">
                 <div class="col-2">

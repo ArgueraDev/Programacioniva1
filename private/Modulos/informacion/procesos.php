@@ -24,9 +24,11 @@ class informacion
         $this->respuesta = $this->db->obtener_datos();
         $Da = $this->respuesta;
         $this->db->consultas('
-                    INSERT INTO informacion (titulo,contenido) VALUES(
+                    INSERT INTO informacion (titulo,contenido,tipo,imagen) VALUES(
                         "' . $Da[0]['titulo'] . '",
-                        "' . $Da[0]['contenido'] . '"
+                        "' . $Da[0]['contenido'] . '",
+                        "' . $Da[0]['tipo'] . '",
+                        "' . $Da[0]['imagen'] . '"
                     )
                 ');
         $this->respuesta['msg'] = 'Registro guardado correctamente';
@@ -45,9 +47,11 @@ class informacion
         if ($this->respuesta['msg'] === 'correcto') {
             if ($this->datos['accion'] === 'nuevo') {
                 $this->db->consultas('
-                    INSERT INTO informacion (titulo,contenido) VALUES(
+                    INSERT INTO informacion (titulo,contenido,tipo,imagen) VALUES(
                         "' . $this->datos['titulo'] . '",
-                        "' . $this->datos['contenido'] . '"
+                        "' . $this->datos['contenido'] . '",
+                        "' . $this->datos['tipo'] . '",
+                        "' . $this->datos['imagen'] . '"
                     )
                 ');
                 $this->respuesta['msg'] = 'Registro guardado correctamente';

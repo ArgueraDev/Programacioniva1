@@ -42,35 +42,39 @@ var appPerfil = new Vue({
                 this.perfil = resp[0];
                 document.getElementById('img-preview').src = resp[0].imagen;
             });
+        },
+        obtenerimagen(e) {
+            var respuesta = null;
+            let file = e.target.files[0];
+            var formdata = new FormData($('#frm-perfil')[0]);
+            var ruta = 'private/imagenes/guardarimg.php';
+
+            $.ajax({
+                type: "POST",
+                url: ruta,
+                data: formdata,
+                contentType: false,
+                processData: false,
+                async: false,
+                success: function (response) {
+                    respuesta = response;
+                }
+
+            })
+            console.log(respuesta);
+            this.perfil.imagen = "private/imagenes/" + respuesta;
+            this.cargar(file);
+
+        },
+        cargar(file) {
+            let reader = new FileReader();
+            reader.onload = (e) => {
+                document.getElementById("img-preview").src = e.target.result;
+            }
+            reader.readAsDataURL(file);
         }
     },
     created: function () {
         this.verIdLogin();
     }
-});
-
-const imagePreview = document.getElementById('img-preview');
-const imageUploader = document.getElementById('img-uploader');
-
-const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/drxvajxbt/image/upload`
-const CLOUDINARY_UPLOAD_PRESET = 'dkobndye';
-
-imageUploader.addEventListener('change', async (e) => {
-    
-    const file = e.target.files[0];
-    const formData = new FormData();
-    formData.append('file', file);
-    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-
-    const res = await axios.post(
-        CLOUDINARY_URL,
-        formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        }
-    );
-    console.log(res);
-    imagePreview.src = res.data.secure_url;
-    appPerfil.perfil.imagen = res.data.secure_url;
 });

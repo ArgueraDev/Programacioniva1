@@ -2,34 +2,51 @@
     <iframe width="560" height="315" src="https://www.youtube.com/embed/KLP2vPxZpfo" frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-<div class="card text-center" id="listado">
-    <div class="card-header bg-dark">
-        <div class="row">
-            <div class="col-2">
-                <input type="button" id="contribuir" class="btn btn-primary" value="Contribuir">
-            </div>
-            <div class="col">
-                <input class="form-control" type="text" placeholder="Buscar" v-model="valor"
-                    v-on:keyup="verInformacion">
-            </div>
+<div class="text-center" id="listado">
+    <nav class="nav bg-dark nav-tabs" id="myTab" role="tablist">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            aria-selected="true">Información General</a>
+
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+            aria-selected="false">Información Bancaria</a>
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+            aria-selected="false">Diccionario Básico</a>
+
+        <div class="navbar-text pull-right col-4">
+            <input class="form-control" type="text" placeholder="Buscar" v-model="valor" v-on:keyup="verInformacion">
         </div>
-    </div>
-    <div class="card-body m-3">
-        <table>
-            <tbody>
-                <tr v-for="item in items" :key="item.idInformacion">
-                    <td>
-                        <div class="card border-0">
+        <div class="navbar-text pull-right col">
+            <input type="button" id="contribuir" class="btn btn-primary" value="Contribuir">
+        </div>
+    </nav>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            <div class="card-deck">
+                <div class="row  p-2" v-for="item in items" :key="item.idInformacion">
+                    <div v-if="item.imagen === ''">
+                        <div class="card" style="width: 18rem;">
                             <div class="card-body">
                                 <h5 class="card-title">{{ item.titulo }}</h5>
                                 <p class="card-text">{{ item.contenido }}</p>
                             </div>
                             <div class="rw-ui-container"></div>
                         </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+                    </div>
+                    <div v-else>
+                        <div class="card" style="width: 18rem;">
+                            <img class="card-img-left" v-bind:src="item.imagen" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ item.titulo }}</h5>
+                                <p class="card-text">{{ item.contenido }}</p>
+                            </div>
+                            <div class="rw-ui-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
+        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
     </div>
 </div>
 <script src="public/vistas/inicio/inicio.js"></script>

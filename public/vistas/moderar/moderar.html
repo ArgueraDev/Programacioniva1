@@ -3,33 +3,48 @@
         <div class="card-header bg-dark text-center text-light">
             Moderar Información
         </div>
-        <div class="card">
-            <table>
-                <tbody>
-                    <tr v-for="item in items" :key="item.idModerar">
-                        <td>
-                            <div class="card">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{ item.titulo }}</h5>
-                                    <p class="card-text">{{ item.contenido }}</p>
-                                    <small class="text-muted">{{ item.nombre }} {{ item.fecha }}</small>
-                                </div>
-                                <div class="row card-footer">
-                                    <div class="col">
-                                        <input type="button" class="btn btn-primary" value="Agregar"
-                                            v-on:click="Agregar(item.idModerar)">
-                                    </div>
-                                    <div class="col">
-                                        <input type="button" class="btn btn-danger" value="eliminar"
-                                            v-on:click="Eliminar(item.idModerar)">
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
+        <div class="card" v-for="item in items" :key="item.idModerar">
+            <div v-if="item.imagen === ''">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.titulo }}</h5>
+                        <small class="text-muted">{{ item.tipo }}</small>
+                        <p class="card-text">{{ item.contenido }}</p>
+                        <small class="text-muted">{{ item.nombre }} {{ item.fecha }}</small>
+                    </div>
+                    <div class="row card-footer">
+                        <div class="col">
+                            <input type="button" class="btn btn-primary" value="Agregar"
+                                v-on:click="Agregar(item.idModerar)">
+                        </div>
+                        <div class="col">
+                            <input type="button" class="btn btn-danger" value="eliminar"
+                                v-on:click="Eliminar(item.idModerar)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-else>
+                <div class="card">
+                    <img class="card-img-top" :src="item.imagen" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ item.titulo }}</h5>
+                        <small class="text-muted">{{ item.tipo }}</small>
+                        <p class="card-text">{{ item.contenido }}</p>
+                        <small class="text-muted">{{ item.nombre }} {{ item.fecha }}</small>
+                    </div>
+                    <div class="row card-footer">
+                        <div class="col">
+                            <input type="button" class="btn btn-primary" value="Agregar"
+                                v-on:click="Agregar(item.idModerar)">
+                        </div>
+                        <div class="col">
+                            <input type="button" class="btn btn-danger" value="eliminar"
+                                v-on:click="Eliminar(item.idModerar)">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </form>
