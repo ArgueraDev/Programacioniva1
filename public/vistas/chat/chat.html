@@ -1,0 +1,22 @@
+<form class="form-inline" v-on:submit.prevent="enviarMensaje" v-on:reset="limpiarChat" id="frm-chat">
+    <div class="card text-white bg-dark mb-3" style="max-width: 24rem;">
+        <div class="card-header">
+            CHAT
+            <button type="button" id="btn-close-chat" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="card-body">
+            <section id="messenger">
+                <ul v-for="msg in msgs" id="messages">
+                    <li>Mensaje: {{ msg }}</li>
+                </ul>
+                <ul id="InputMessages">
+                    <input type="text" v-model="msg" placeholder="Escribe tu Mensaje" class="form-control">
+                    <input type="submit" value="Enviar" class="btn btn-success">
+                </ul>
+            </section>
+        </div>
+    </div>
+</form>
+<script src="public/vistas/chat/chat.js"></script>
