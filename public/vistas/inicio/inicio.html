@@ -70,7 +70,7 @@
             <div class="card-deck justify-content-center align-items-center">
                 <div class="row  p-2" v-for="item in diccionario" :key="item.idInformacion">
                     <div v-if="item.imagen === ''">
-                        <div class="card" style="width: 18rem;">
+                        <div class="card" style="max-width: 18rem;">
                             <div class="card-body">
                                 <h5 class="card-title">{{ item.titulo }}</h5>
                                 <p class="card-text">{{ item.contenido }}</p>
@@ -78,7 +78,7 @@
                         </div>
                     </div>
                     <div v-else>
-                        <div class="card" style="width: 18rem;">
+                        <div class="card" style="max-width: 18rem;">
                             <img class="card-img-left img-fluid" v-bind:src="item.imagen" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">{{ item.titulo }}</h5>
