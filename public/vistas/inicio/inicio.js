@@ -11,13 +11,9 @@ var appInicio = new Vue({
             fetch(`private/Modulos/informacion/procesos.php?proceso=buscarInformacion&informacion=${this.valor}`).then(resp => resp.json()).then(resp => {
                 this.informacion = resp;
             });
-        },
-        verbancaria: function () {
             fetch(`private/Modulos/informacion/procesos.php?proceso=buscarbancaria&informacion=${this.valor}`).then(resp => resp.json()).then(resp => {
                 this.bancaria = resp;
             });
-        },
-        verDiccionario: function () {
             fetch(`private/Modulos/informacion/procesos.php?proceso=buscardiccionario&informacion=${this.valor}`).then(resp => resp.json()).then(resp => {
                 this.diccionario = resp;
             });
@@ -25,8 +21,6 @@ var appInicio = new Vue({
     },
     created: function () {
         this.verInformacion();
-        this.verbancaria();
-        this.verDiccionario();
     }
 })
 
