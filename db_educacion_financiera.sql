@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-05-2020 a las 19:30:25
+-- Tiempo de generación: 18-05-2020 a las 20:44:21
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.2
 
@@ -54,19 +54,20 @@ INSERT INTO `consultas` (`idConsulta`, `idLogin`, `consulta`, `fecha`) VALUES
 CREATE TABLE `informacion` (
   `idInformacion` int(10) NOT NULL,
   `titulo` varchar(60) NOT NULL,
-  `contenido` varchar(200) NOT NULL
+  `contenido` varchar(200) NOT NULL,
+  `tipo` varchar(20) NOT NULL,
+  `imagen` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `informacion`
 --
 
-INSERT INTO `informacion` (`idInformacion`, `titulo`, `contenido`) VALUES
-(2, 'Tasa de interés activa', 'Es la tasa de interés que cobran las entidades financieras al otorgar un crédito'),
-(3, 'Tasa de interés efectiva', 'es la que las instituciones financieras aplican a los créditos y que incluye la tasa nominal más el cobro del seguro, comisiones e impuestos'),
-(4, 'Crédito o Préstamo', 'Es un producto financiero a través del cual los bancos, bancos cooperativos o sociedades de ahorro y credito                           nos facilitan una cantidad de dinero a un plazo y costo determina'),
-(14, '¿Por qué es importante la informacion financiera?', 'La educacion financiera es uno de los motores del desarrollo economico y social ya que tomar desiciones financieras acertadas mejora nuestro nivel de vida'),
-(22, 'Hola', 'Esta es la primera prueba de la contribución de usuarios');
+INSERT INTO `informacion` (`idInformacion`, `titulo`, `contenido`, `tipo`, `imagen`) VALUES
+(2, 'Tasa de interés activa', 'Es la tasa de interés que cobran las entidades financieras al otorgar un crédito', 'Conceptos Básicos', ''),
+(3, 'Tasa de interés efectiva', 'es la que las instituciones financieras aplican a los créditos y que incluye la tasa nominal más el cobro del seguro, comisiones e impuestos', 'Conceptos Básicos', ''),
+(4, 'Crédito o Préstamo', 'Es un producto financiero a través del cual los bancos, bancos cooperativos o sociedades de ahorro y credito                           nos facilitan una cantidad de dinero a un plazo y costo determina', 'Conceptos Básicos', ''),
+(14, '¿Por qué es importante la informacion financiera?', 'La educacion financiera es uno de los motores del desarrollo economico y social ya que tomar desiciones financieras acertadas mejora nuestro nivel de vida', 'Información General', '');
 
 -- --------------------------------------------------------
 
@@ -88,7 +89,7 @@ CREATE TABLE `login` (
 --
 
 INSERT INTO `login` (`idLogin`, `nombre`, `correo`, `contraseña`, `tipo`, `imagen`) VALUES
-(1, 'Roberto', 'roberto@ugb.sv', '12345', 'admin', 'https://res.cloudinary.com/drxvajxbt/image/upload/v1589389825/q9n48puctzlfkpblrrwn.png'),
+(1, 'Roberto', 'roberto@ugb.sv', '12345', 'admin', 'img/usuario.png'),
 (11, 'Yasmin', 'yasmin@ugb.sv', '123456', 'usuario', 'img/usuario.png');
 
 -- --------------------------------------------------------
@@ -102,7 +103,9 @@ CREATE TABLE `moderar` (
   `idLogin` int(10) NOT NULL,
   `titulo` varchar(100) NOT NULL,
   `contenido` varchar(200) NOT NULL,
-  `fecha` date NOT NULL
+  `fecha` date NOT NULL,
+  `tipo` varchar(20) NOT NULL,
+  `imagen` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -149,7 +152,7 @@ ALTER TABLE `consultas`
 -- AUTO_INCREMENT de la tabla `informacion`
 --
 ALTER TABLE `informacion`
-  MODIFY `idInformacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `idInformacion` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `login`
@@ -161,7 +164,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT de la tabla `moderar`
 --
 ALTER TABLE `moderar`
-  MODIFY `idModerar` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idModerar` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Restricciones para tablas volcadas
