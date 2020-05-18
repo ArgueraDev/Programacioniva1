@@ -13,8 +13,7 @@
             aria-selected="false">Diccionario Básico</a>
 
         <div class="navbar-text pull-right col-4">
-            <input class="form-control" type="text" placeholder="Buscar" v-model="valor"
-                v-on:keyup="verInformacion">
+            <input class="form-control" type="text" placeholder="Buscar" v-model="valor" v-on:keyup="verInformacion">
         </div>
         <div class="navbar-text pull-right col">
             <input type="button" id="contribuir" class="btn btn-primary" value="Contribuir">
@@ -22,7 +21,7 @@
     </nav>
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-            <div class="card-deck">
+            <div class="card-deck justify-content-center align-items-center">
                 <div class="row  p-2" v-for="item in informacion" :key="item.idInformacion">
                     <div v-if="item.imagen === ''">
                         <div class="card" style="width: 18rem;">
@@ -45,7 +44,7 @@
             </div>
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-            <div class="card-deck">
+            <div class="card-deck justify-content-center align-items-center">
                 <div class="row  p-2" v-for="item in bancaria" :key="item.idInformacion">
                     <div v-if="item.imagen === ''">
                         <div class="card" style="width: 18rem;">
@@ -68,7 +67,7 @@
             </div>
         </div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-            <div class="card-deck">
+            <div class="card-deck justify-content-center align-items-center">
                 <div class="row  p-2" v-for="item in diccionario" :key="item.idInformacion">
                     <div v-if="item.imagen === ''">
                         <div class="card" style="width: 18rem;">

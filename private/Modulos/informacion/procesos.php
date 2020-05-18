@@ -70,7 +70,7 @@ class informacion
     {
         $this->respuesta = [];
         $this->db->consultas('select * from informacion where tipo="Información Bancaria" and titulo like "%' . $valor . '%" 
-        or tipo="Información Bancaria" contenido like "%' . $valor . '%"
+        or tipo="Información Bancaria" and contenido like "%' . $valor . '%"
         ORDER BY idInformacion DESC');
         return $this->respuesta = $this->db->obtener_datos();
     }
@@ -79,7 +79,7 @@ class informacion
         $this->respuesta = [];
         $this->db->consultas('select * from informacion where tipo="conceptos básicos" and titulo like "%' . $valor . '%" 
         or tipo="conceptos básicos" and contenido like "%' . $valor . '%"
-        ORDER BY titulo DESC');
+        ORDER BY titulo ASC');
         return $this->respuesta = $this->db->obtener_datos();
     }
 }
