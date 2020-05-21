@@ -90,8 +90,12 @@ var barra = new Vue({
                 document.getElementById('imgperfil').src = resp[0].imagen;
                 if (resp[0].tipo == 'admin') {
                     $("#permiso").show()
+                    $("#chats").show()
+                    $("#chat").hide()
                 } else {
                     $("#permiso").hide()
+                    $("#chats").hide()
+                    $("#chat").show()
                 }
             });
         }

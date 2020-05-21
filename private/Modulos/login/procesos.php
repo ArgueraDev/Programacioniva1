@@ -158,4 +158,10 @@ class login
                 ');
         $this->respuesta['msg'] = 'Usuario Actualizado';
     }
+
+    public function usuarios()
+    {
+        $this->db->consultas('select * from login');
+        return $this->respuesta = $this->db->obtener_datos();
+    }
 }

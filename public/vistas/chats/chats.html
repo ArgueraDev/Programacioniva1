@@ -1,0 +1,62 @@
+<form v-on:submit.prevent="enviarMensaje" id="frm-chats">
+    <div class="container2">
+        <h3 class=" text-center">Chats</h3>
+        <div class="messaging">
+            <div class="inbox_msg">
+                <div class="inbox_people">
+                    <div class="headind_srch">
+                        <div class="recent_heading">
+                            <h4>Usuarios</h4>
+                        </div>
+                        <div class="srch_bar">
+                            <div class="stylish-input-group">
+                                <input type="text" class="search-bar" placeholder="Buscar">
+                                <span class="input-group-addon">
+                                    <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
+                                </span> </div>
+                        </div>
+                    </div>
+                    <div class="inbox_chat">
+                        <div class="chat_list active_chat" v-for="item in usuarios">
+                            <div class="chat_people">
+                                <div class="chat_ib">
+                                    <h5> {{ item.nombre }} </h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mesgs">
+                    <div class="msg_history">
+                        <div v-for="item in msgs" id="messages">
+                            <div v-if="item.de1 != msg.de1">
+                                <div class="incoming_msg">
+                                    <div class="received_msg">
+                                        <div class="received_withd_msg">
+                                            <p> {{ item.msg }} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-else>
+                                <div class="outgoing_msg">
+                                    <div class="sent_msg">
+                                        <p> {{ item.msg }} </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="type_msg">
+                        <div class="input_msg_write">
+                            <input type="text" class="write_msg" v-model="msg.msg" placeholder="Escribe tu Mensaje" />
+                            <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o"
+                                    aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<script src="public/vistas/chats/chats.js"></script>
