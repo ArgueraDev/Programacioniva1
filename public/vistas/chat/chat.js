@@ -13,8 +13,10 @@ var socket = io.connect("http://localhost:3001", {
         },
         methods: {
             enviarMensaje() {
-                socket.emit('enviarMensaje', this.msg);
-                this.msg.msg = '';
+                if (!empty(trim(this.msg))) {
+                    socket.emit('enviarMensaje', trim(this.msg));
+                    this.msg.msg = '';
+                }
             },
             usuario() {
                 fetch(`private/Modulos/consultas/procesos.php?proceso=idLogin&consulta=""`).then(resp => resp.json()).then(resp => {

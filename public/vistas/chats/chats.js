@@ -6,16 +6,19 @@ var socket = io.connect("http://localhost:3001", {
         data: {
             msg: {
                 de1: 'administracion',
-                para: '11',
+                para: 0,
                 msg: ''
             },
             msgs: [],
             usuarios: [],
+            todosmsg: []
         },
         methods: {
             enviarMensaje() {
-                socket.emit('enviarMensaje', this.msg);
-                this.msg.msg = '';
+                if (!empty(trim(this.msg))) {
+                    socket.emit('enviarMensaje', trim(this.msg));
+                    this.msg.msg = '';
+                }
             },
             limpiarChat() {
                 this.msg.msg = '';
@@ -24,6 +27,20 @@ var socket = io.connect("http://localhost:3001", {
                 fetch(`private/Modulos/login/procesos.php?proceso=usuarios&login=""`).then(resp => resp.json()).then(resp => {
                     this.usuarios = resp;
                 });
+            },
+            abrirChat(id) {
+                socket.emit('chatHistory');
+                this.msg.para = id;
+                this.msgs = [];
+                this.todosmsg.forEach(item => {
+                    this.utilidad(item);
+                });
+            },
+            utilidad(item) {
+                if (item.de1 === this.msg.de1 && item.para === this.msg.para ||
+                    item.de1 === this.msg.para && item.para === this.msg.de1) {
+                    this.msgs.push(item);
+                }
             }
         },
         created() {
@@ -32,17 +49,8 @@ var socket = io.connect("http://localhost:3001", {
         }
     });
 socket.on('recibirMensaje', msg => {
-    if (msg.de1 === appchats.msg.de1 && msg.para === appchats.msg.para ||
-        msg.de1 === appchats.msg.para && msg.para === appchats.msg.de1) {
-        appchats.msgs.push(msg);
-    }
+    appchats.utilidad(msg);
 });
 socket.on('chatHistory', msgs => {
-    appchats.msgs = [];
-    msgs.forEach(item => {
-        if (item.de1 === appchats.msg.de1 && item.para === appchats.msg.para ||
-            item.de1 === appchats.msg.para && item.para === appchats.msg.de1) {
-            appchats.msgs.push(item);
-        }
-    });
+    appchats.todosmsg = msgs;
 });
