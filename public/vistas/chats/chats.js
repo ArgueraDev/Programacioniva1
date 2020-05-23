@@ -15,13 +15,13 @@ var socket = io.connect("http://localhost:3001", {
         },
         methods: {
             enviarMensaje() {
-                if (!empty(trim(this.msg))) {
-                    socket.emit('enviarMensaje', trim(this.msg));
+                var msj = this.msg.msg;
+                msj = msj.trim();
+                if (msj != '' && this.msg.para != 0) {
+                    socket.emit('enviarMensaje', msj);
+                    console.log(msj)
                     this.msg.msg = '';
                 }
-            },
-            limpiarChat() {
-                this.msg.msg = '';
             },
             verusuarios() {
                 fetch(`private/Modulos/login/procesos.php?proceso=usuarios&login=""`).then(resp => resp.json()).then(resp => {

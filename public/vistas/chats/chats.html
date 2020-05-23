@@ -21,22 +21,16 @@
                 </div>
                 <div class="mesgs">
                     <div class="msg_history">
-                        <div v-for="item in msgs" id="messages">
-                            <div v-if="item.de1 != msg.de1">
-                                <div class="incoming_msg">
-                                    <div class="received_msg">
-                                        <div class="received_withd_msg">
-                                            <p> {{ item.msg }} </p>
-                                        </div>
-                                    </div>
+                        <div class="incoming_msg" v-for="item in msgs" v-if="item.de1 != msg.de1">
+                            <div class="received_msg">
+                                <div class="received_withd_msg">
+                                    <p> {{ item.msg }} </p>
                                 </div>
                             </div>
-                            <div v-else>
-                                <div class="outgoing_msg">
-                                    <div class="sent_msg">
-                                        <p> {{ item.msg }} </p>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="outgoing_msg" v-else>
+                            <div class="sent_msg">
+                                <p> {{ item.msg }} </p>
                             </div>
                         </div>
                     </div>

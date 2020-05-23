@@ -13,8 +13,10 @@ var socket = io.connect("http://localhost:3001", {
         },
         methods: {
             enviarMensaje() {
-                if (!empty(trim(this.msg))) {
-                    socket.emit('enviarMensaje', trim(this.msg));
+                var msj = this.msg.msg;
+                msj = msj.trim();
+                if (msj != '') {
+                    socket.emit('enviarMensaje', msj);
                     this.msg.msg = '';
                 }
             },
