@@ -48,7 +48,10 @@ var socket = io.connect("http://localhost:3001", {
         }
     });
 socket.on('recibirMensaje', msg => {
-    appchats.utilidad(msg);
+    if (msg.de1 === appchats.msg.de1 && msg.para === appchats.msg.para ||
+        msg.para === appchats.msg.de1 && msg.de1 === appchats.msg.para) {
+        appchats.msgs.push(msg);
+    }
 });
 socket.on('chatHistory', msgs => {
     appchats.todosmsg = msgs;
