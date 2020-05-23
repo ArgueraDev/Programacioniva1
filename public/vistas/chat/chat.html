@@ -1,33 +1,29 @@
 <form v-on:submit.prevent="enviarMensaje" id="frm-chat">
     <div class="container2">
-        <h3 class=" text-center">Chat con Administracion</h3>
-        <div class="messaging">
-            <div class="mesgs">
-                <div class="msg_history">
-                    <div v-for="item in msgs" id="messages">
-                        <div v-if="item.de1 != msg.de1">
-                            <div class="incoming_msg">
-                                <div class="received_msg">
-                                    <div class="received_withd_msg">
-                                        <p> {{ item.msg }} </p>
-                                    </div>
-                                </div>
-                            </div>
+        <h3 class=" text-center">Chat con Administración</h3>
+        <div class="container">
+            <div class="card">
+                <div class="card-body col msg_history">
+                    <div class="row p-2" v-for="item in msgs" v-if="item.de1 != msg.de1">
+                        <div class="card shadow-lg bg-white mr-auto p-2">
+                            <p class="card-text">{{ item.msg }}</p>
                         </div>
-                        <div v-else>
-                            <div class="outgoing_msg">
-                                <div class="sent_msg">
-                                    <p> {{ item.msg }} </p>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="row p-2" v-else>
+                        <div class="card shadow-lg bg-success text-light ml-auto p-2">
+                            <p class="card-text">{{ item.msg }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="type_msg">
-                    <div class="input_msg_write">
-                        <input type="text" class="write_msg" v-model="msg.msg" placeholder="Escribe tu Mensaje" />
-                        <button class="msg_send_btn" type="submit"><i class="fa fa-paper-plane-o"
-                                aria-hidden="true"></i></button>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col">
+                            <input type="text" class="form-control" v-model="msg.msg"
+                                placeholder="Escribe tu Mensaje" />
+                        </div>
+                        <div class="col-2">
+                            <input class="btn btn-primary" type="submit" value="enviar" />
+                        </div>
                     </div>
                 </div>
             </div>
