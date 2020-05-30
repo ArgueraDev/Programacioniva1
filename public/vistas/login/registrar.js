@@ -30,10 +30,10 @@ var appRegistrar = new Vue({
             });
         },
         Terminos() {
-            Swal.fire(
-                'Términos y Condiciones',
-                'Aqui van los terminos y condiciones'
-            )
+            Swal.fire({
+                title: 'Términos y Condiciones',
+                html: '<iframe src="public/vistas/terminos/terminos.html" height="500"></iframe>'
+            })
         },
         habilitarBtn: function () {
             if (this.valor === true) {

@@ -98,6 +98,12 @@ var barra = new Vue({
                     $("#chat").show()
                 }
             });
+        },
+        acercaDe() {
+            Swal.fire({
+                title: 'Términos y Condiciones',
+                html: '<iframe src="public/vistas/terminos/informacion.html" height="450"></iframe>'
+            })
         }
     },
     created: function () {
