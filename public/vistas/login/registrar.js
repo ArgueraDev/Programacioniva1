@@ -32,7 +32,7 @@ var appRegistrar = new Vue({
         Terminos() {
             Swal.fire({
                 title: 'Términos y Condiciones',
-                html: '<iframe src="public/vistas/terminos/terminos.html" height="500"></iframe>'
+                html: '<iframe src="public/vistas/terminos/terminos.html" height="450"></iframe>'
             })
         },
         habilitarBtn: function () {
