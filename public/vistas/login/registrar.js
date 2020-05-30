@@ -8,7 +8,8 @@ var appRegistrar = new Vue({
             correo: '',
             contraseña: '',
             imagen: 'img/usuario.png'
-        }
+        },
+        valor: false
     },
     methods: {
         guardarRegistro: function () {
@@ -27,6 +28,19 @@ var appRegistrar = new Vue({
                     location.href = "principal.html";
                 }
             });
+        },
+        Terminos() {
+            Swal.fire(
+                'Términos y Condiciones',
+                'Aqui van los terminos y condiciones'
+            )
+        },
+        habilitarBtn: function () {
+            if (this.valor === true) {
+                $('#btnRegistrar').attr("disabled", false);
+            } else {
+                $('#btnRegistrar').attr("disabled", true);
+            }
         }
     },
     created: function () {

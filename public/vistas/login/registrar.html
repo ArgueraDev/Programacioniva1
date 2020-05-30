@@ -29,9 +29,21 @@
                         class="form-control">
                 </div>
             </div>
+            <div class="col p-2">
+                <div class="row justify-content-center align-items-center">
+                    <p class="font-weight-bold text-light bg-primary p-2" v-on:click="Terminos">Términos y
+                        Condiciones
+                    </p>
+                </div>
+                <div class="form-check row">
+                    <input type="checkbox" class="form-check-input" id="Check" v-model="valor"
+                        v-on:change="habilitarBtn">
+                    <label class="form-check-label" for="Check">Aceptar Términos y Condiciones de Finappza</label>
+                </div>
+            </div>
             <div class="row p-2">
                 <div class="col-12 text-center">
-                    <input type="submit" class="btn btn-primary" value="Registrar">
+                    <input type="submit" disabled class="btn btn-primary" id="btnRegistrar" value="Registrar">
                 </div>
             </div>
             <div class="row p-2">
