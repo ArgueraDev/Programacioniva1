@@ -101,8 +101,7 @@ var barra = new Vue({
         },
         acercaDe() {
             Swal.fire({
-                title: 'Términos y Condiciones',
-                html: '<iframe src="public/vistas/terminos/informacion.html" height="450"></iframe>'
+                html: '<iframe src="public/vistas/terminos/informacion.html" height="500"></iframe>'
             })
         }
     },
