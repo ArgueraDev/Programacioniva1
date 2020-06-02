@@ -67,3 +67,4 @@ class moderar
         $this->respuesta['msg'] = "Registro eliminado ";
     }
 }
+?>

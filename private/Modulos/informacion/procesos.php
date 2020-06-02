@@ -83,3 +83,4 @@ class informacion
         return $this->respuesta = $this->db->obtener_datos();
     }
 }
+?>

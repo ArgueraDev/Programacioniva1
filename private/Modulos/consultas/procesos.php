@@ -76,3 +76,4 @@ class consulta
         $this->respuesta = $this->db->obtener_datos();
     }
 }
+?>

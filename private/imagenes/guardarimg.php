@@ -1,5 +1,4 @@
 <?php
-
 if (isset($_FILES["archivo"])) {
     $file = $_FILES["archivo"];
     $nombre = $file["name"];
@@ -16,3 +15,4 @@ if (isset($_FILES["archivo"])) {
         echo $foto;
     }
 }
+?>
