@@ -24,6 +24,7 @@ var socket = io.connect("http://localhost:3001", {
                     this.msg.de1 = resp[0].idLogin;
                     socket.emit('chatHistory');
                 });
+                this.finalChat();
             },
             cargarImagen(e) {
                 var file = e.target.files[0];
@@ -35,6 +36,11 @@ var socket = io.connect("http://localhost:3001", {
                     this.msg.imagen = '';
                 };
                 reader.readAsDataURL(file);
+            },
+            finalChat() {
+                $("#scroll").animate({
+                    scrollTop: $('#scroll')[0].scrollHeight
+                }, 1000);
             }
         },
         created() {
@@ -46,6 +52,7 @@ socket.on('recibirMensaje', msg => {
         msg.para === appchat.msg.de1 && msg.de1 === appchat.msg.para) {
         appchat.msgs.push(msg);
     }
+    appchat.finalChat();
 });
 socket.on('chatHistory', msgs => {
     appchat.msgs = [];
