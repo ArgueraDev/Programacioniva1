@@ -7,15 +7,14 @@ var socket = io.connect("http://localhost:3001", {
             msg: {
                 de1: '',
                 para: 'administracion',
-                msg: ''
+                msg: '',
+                imagen: ''
             },
             msgs: []
         },
         methods: {
             enviarMensaje() {
-                var msj = this.msg.msg;
-                this.msg.msg = msj.trim();
-                if (this.msg.msg != '') {
+                if (this.msg.msg.trim() != '') {
                     socket.emit('enviarMensaje', this.msg);
                     this.msg.msg = '';
                 }
@@ -25,6 +24,17 @@ var socket = io.connect("http://localhost:3001", {
                     this.msg.de1 = resp[0].idLogin;
                     socket.emit('chatHistory');
                 });
+            },
+            cargarImagen(e) {
+                var file = e.target.files[0];
+                var reader = new FileReader();
+                reader.onload = (event) => {
+                    this.msg.imagen = event.target.result
+                    this.msg.msg = '';
+                    socket.emit('enviarMensaje', this.msg);
+                    this.msg.imagen = '';
+                };
+                reader.readAsDataURL(file);
             }
         },
         created() {

@@ -11,7 +11,8 @@ io.on('connection', socket => {
             db.collection('chat').insert({
                 'de1': msg.de1,
                 'para': msg.para,
-                'msg': msg.msg
+                'msg': msg.msg,
+                'imagen': msg.imagen
             });
             io.emit('recibirMensaje', msg);
         });

@@ -1,52 +1,59 @@
 <form v-on:submit.prevent="enviarMensaje" id="frm-chats">
     <div class="container2">
-        <div class="messaging">
-            <div class="inbox_msg">
-                <div class="inbox_people">
-                    <div class="headind_srch">
-                        <div class="recent_heading">
-                            <h4>Usuarios</h4>
-                        </div>
-                    </div>
-                    <div class="inbox_chat">
-                        <div class="chat_list active_chat" v-for="item in usuarios" :key="item.idLogin"
-                            v-on:click="abrirChat(item.idLogin)" v-if="item.idLogin != 1">
-                            <div class="chat_people">
-                                <div class="chat_ib">
-                                    <h5> {{ item.nombre }} </h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-sm-8">
                 <div class="card">
-                    <div class="card-body col msg_history">
+                    <div class="card-header bg-dark text-light">
+                        <h5 class=" text-center">{{ msg.para }}</h5>
+                    </div>
+                    <div class="card-body col msg_history" id="scroll">
                         <div class="row p-2" v-for="item in msgs" v-if="item.de1 != msg.de1">
-                            <div class="card shadow-lg bg-white mr-auto p-2">
+                            <div class="card shadow-lg bg-white mr-auto p-2" v-if="item.imagen != '' ">
+                                <img class="img-thumbnail" :src="item.imagen">
+                                <p class="card-text">{{ item.msg }}</p>
+                            </div>
+                            <div class="card shadow-lg bg-white mr-auto p-2" v-else>
                                 <p class="card-text">{{ item.msg }}</p>
                             </div>
                         </div>
                         <div class="row p-2" v-else>
-                            <div class="card shadow-lg bg-success text-light ml-auto p-2">
+                            <div class="card shadow-lg bg-success text-light ml-auto p-2" v-if="item.imagen != '' ">
+                                <img class="img-responsive" :src="item.imagen">
+                                <p class="card-text">{{ item.msg }}</p>
+                            </div>
+                            <div class="card shadow-lg bg-success text-light ml-auto p-2" v-else>
                                 <p class="card-text">{{ item.msg }}</p>
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer">
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" class="form-control" v-model="msg.msg"
-                                    placeholder="Escribe tu Mensaje" />
-                            </div>
-                            <div class="col-2">
-                                <input class="btn btn-primary" type="submit" value="enviar" />
-                            </div>
+                    <div class="card-footer bg-dark text-light">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <label class="btn btn-Secondary">
+                                    <input @change="cargarImagen" type="file" class="d-none" id="file" accept="image/*">
+                                    <img src="img/foto.png" class="img-responsive" height="30">
+                                </label>
+                            </span>
+                            <input type="text" class="form-control" v-model="msg.msg" placeholder="Escribe tu Mensaje">
+                            <span class="input-group-addon"><input type="submit" class="btn btn-success"
+                                    values="Enviar"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header text-center bg-dark text-light">
+                        <h3 class=" text-center">Usuarios</h3>
+                    </div>
+                    <div class="msg_history">
+                        <div class="usuarios" v-for="item in usuarios" :key="item.idLogin"
+                            v-on:click="abrirChat(item.idLogin)" v-if="item.idLogin != 1">{{ item.nombre }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 </form>
 <script src="public/vistas/chats/chats.js"></script>

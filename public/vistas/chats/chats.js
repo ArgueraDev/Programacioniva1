@@ -7,7 +7,8 @@ var socket = io.connect("http://localhost:3001", {
             msg: {
                 de1: 'administracion',
                 para: 0,
-                msg: ''
+                msg: '',
+                imagen: ''
             },
             msgs: [],
             usuarios: [],
@@ -15,9 +16,7 @@ var socket = io.connect("http://localhost:3001", {
         },
         methods: {
             enviarMensaje() {
-                var msj = this.msg.msg;
-                this.msg.msg = msj.trim();
-                if (this.msg.msg != '' && this.msg.para != 0) {
+                if (this.msg.msg.trim() != '') {
                     socket.emit('enviarMensaje', this.msg);
                     this.msg.msg = '';
                 }
@@ -34,12 +33,29 @@ var socket = io.connect("http://localhost:3001", {
                 this.todosmsg.forEach(item => {
                     this.utilidad(item);
                 });
+                this.finalChat();
             },
             utilidad(item) {
                 if (item.de1 === this.msg.de1 && item.para === this.msg.para ||
                     item.de1 === this.msg.para && item.para === this.msg.de1) {
                     this.msgs.push(item);
                 }
+            },
+            cargarImagen(e) {
+                var file = e.target.files[0];
+                var reader = new FileReader();
+                reader.onload = (event) => {
+                    this.msg.imagen = event.target.result
+                    this.msg.msg = '';
+                    socket.emit('enviarMensaje', this.msg);
+                    this.msg.imagen = '';
+                };
+                reader.readAsDataURL(file);
+            },
+            finalChat() {
+                $("#scroll").animate({
+                    scrollTop: $('#scroll')[0].scrollHeight
+                }, 1000);
             }
         },
         created() {
@@ -52,6 +68,7 @@ socket.on('recibirMensaje', msg => {
         msg.para === appchats.msg.de1 && msg.de1 === appchats.msg.para) {
         appchats.msgs.push(msg);
     }
+    appchats.finalChat();
 });
 socket.on('chatHistory', msgs => {
     appchats.todosmsg = msgs;
