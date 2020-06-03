@@ -3,24 +3,30 @@
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 <div class="text-center" id="listado">
-    <nav class="nav bg-dark nav-tabs" id="myTab" role="tablist">
-        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-            aria-selected="true">Información General</a>
-
-        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-            aria-selected="false">Información Bancaria</a>
-        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
-            aria-selected="false">Diccionario Básico</a>
-
-        <div class="navbar-text pull-right col-4">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="col-8">
             <input class="form-control" type="text" placeholder="Buscar" v-model="valor" v-on:keyup="verInformacion">
         </div>
-        <div class="navbar-text pull-right col">
+        <div class="col-4">
             <input type="button" id="contribuir" class="btn btn-primary" value="Contribuir">
         </div>
     </nav>
+    <nav class="nav bg-dark nav-tabs" id="myTab" role="tablist">
+        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#general" role="tab" aria-controls="general"
+            aria-selected="true">
+            Información General
+        </a>
+        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#bancaria" role="tab" aria-controls="bancaria"
+            aria-selected="false">
+            Información Bancaria
+        </a>
+        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#diccionario" role="tab"
+            aria-controls="diccionario" aria-selected="false">
+            Diccionario Básico
+        </a>
+    </nav>
     <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane fade show active" id="general" role="tabpanel" aria-labelledby="home-tab">
             <div class="card-deck justify-content-center align-items-center">
                 <div class="row  p-2" v-for="item in informacion" :key="item.idInformacion">
                     <div v-if="item.imagen === ''">
@@ -43,7 +49,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div class="tab-pane fade" id="bancaria" role="tabpanel" aria-labelledby="profile-tab">
             <div class="card-deck justify-content-center align-items-center">
                 <div class="row  p-2" v-for="item in bancaria" :key="item.idInformacion">
                     <div v-if="item.imagen === ''">
@@ -66,7 +72,7 @@
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+        <div class="tab-pane fade" id="diccionario" role="tabpanel" aria-labelledby="contact-tab">
             <div class="card-deck justify-content-center align-items-center">
                 <div class="row  p-2" v-for="item in diccionario" :key="item.idInformacion">
                     <div v-if="item.imagen === ''">
