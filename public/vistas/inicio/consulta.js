@@ -89,13 +89,10 @@ var barra = new Vue({
                 this.Usuario.nombre = resp[0].nombre;
                 document.getElementById('imgperfil').src = resp[0].imagen;
                 if (resp[0].tipo == 'admin') {
-                    $("#permiso").show()
-                    $("#chats").show()
-                    $("#chat").hide()
+                    document.getElementById("permiso").hidden = false;
+                    document.getElementById("chats").hidden = false;
                 } else {
-                    $("#permiso").hide()
-                    $("#chats").hide()
-                    $("#chat").show()
+                    document.getElementById("chat").hidden = false;
                 }
             });
         },
