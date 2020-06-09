@@ -4,7 +4,10 @@
             <div class="col-sm-8">
                 <div class="card">
                     <div class="card-header bg-dark text-light">
-                        <h5 class=" text-center">{{ msg.para }}</h5>
+                        <h5 class=" text-center" v-if="usuario.nombre != ''">
+                            <img :src="usuario.img" width="30" height="30" class="rounded-circle">
+                            {{ usuario.nombre }}
+                        </h5>
                     </div>
                     <div class="card-body col msg_history" id="scroll">
                         <div class="row p-2" v-for="item in msgs" v-if="item.de1 != msg.de1">
@@ -47,8 +50,10 @@
                         <h3 class=" text-center">Usuarios</h3>
                     </div>
                     <div class="msg_history">
-                        <div class="usuarios" v-for="item in usuarios" :key="item.idLogin"
-                            v-on:click="abrirChat(item.idLogin)" v-if="item.idLogin != 1">{{ item.nombre }}
+                        <div class="usuarios" v-for="item in usuarios" :key="item.idLogin" v-on:click="abrirChat(item)"
+                            v-if="item.idLogin != 1">
+                            <img :src="item.imagen" width="30" height="30" class="rounded-circle">
+                            {{ item.nombre }}
                         </div>
                     </div>
                 </div>

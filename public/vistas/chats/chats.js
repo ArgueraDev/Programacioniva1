@@ -12,7 +12,11 @@ var socket = io.connect("http://localhost:3001", {
             },
             msgs: [],
             usuarios: [],
-            todosmsg: []
+            todosmsg: [],
+            usuario: {
+                img: '',
+                nombre: ''
+            }
         },
         methods: {
             enviarMensaje() {
@@ -26,9 +30,11 @@ var socket = io.connect("http://localhost:3001", {
                     this.usuarios = resp;
                 });
             },
-            abrirChat(id) {
+            abrirChat(item) {
+                this.msg.para = item.idLogin;
+                this.usuario.img = item.imagen;
+                this.usuario.nombre = item.nombre;
                 socket.emit('chatHistory');
-                this.msg.para = id;
                 this.msgs = [];
                 this.todosmsg.forEach(item => {
                     this.utilidad(item);
