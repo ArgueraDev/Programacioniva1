@@ -12,3 +12,7 @@ init();
 $(document).ready(function () {
     $(`#vistas`).load(`public/vistas/inicio/inicio.html`, function () {});
 });
+
+var socket = io.connect("http://localhost:3001", {
+    'forceNew': true
+});
