@@ -1,4 +1,13 @@
+/**
+ * @author Roberto Arguera <usis008718@ugb.edu.sv>
+ * @file chats.js chat con administracion.
+ * @license MIT libre distribucion y modificacion para fines educativos.
+ * @instance objeto de instancia de vue.js
+ */
 var appchats = new Vue({
+    /**
+     * @property el element del DOM a enlazar.
+     */
     el: '#frm-chats',
     data: {
         msg: {
@@ -16,17 +25,27 @@ var appchats = new Vue({
         }
     },
     methods: {
+        /**
+         * @function enviarMensaje envia el mensaje por medio de nodejs y socket io.
+         */
         enviarMensaje() {
             if (this.msg.msg.trim() != '') {
                 socket.emit('enviarMensaje', this.msg);
                 this.msg.msg = '';
             }
         },
+        /**
+         * @function verusuarios muestra cada uno de los usuarios registrados en la app.
+         */
         verusuarios() {
             fetch(`private/Modulos/login/procesos.php?proceso=usuarios&login=""`).then(resp => resp.json()).then(resp => {
                 this.usuarios = resp;
             });
         },
+        /**
+         * @function abrirChat muestra los msj de el usuario seleccionado.
+         * @param {object} item datos del usario seleccionado.
+         */
         abrirChat(item) {
             this.msg.para = item.idLogin;
             this.usuario.img = item.imagen;
@@ -38,12 +57,20 @@ var appchats = new Vue({
             });
             this.finalChat();
         },
+        /**
+         * @function utilidad funciona para controlar el ingreso de los msj.
+         * @param {object} item mensaje a validar con el usuario.
+         */
         utilidad(item) {
             if (item.de1 === this.msg.de1 && item.para === this.msg.para ||
                 item.de1 === this.msg.para && item.para === this.msg.de1) {
                 this.msgs.push(item);
             }
         },
+        /**
+         * @function cargarImagen envia foto o imagen al usuario.
+         * @param {object} e datos de la imagen seleccionada.
+         */
         cargarImagen(e) {
             var file = e.target.files[0];
             var reader = new FileReader();
@@ -55,6 +82,9 @@ var appchats = new Vue({
             };
             reader.readAsDataURL(file);
         },
+        /**
+         * @function finalChat muestra el ultimo msj del chat.
+         */
         finalChat() {
             $("#scroll").animate({
                 scrollTop: $('#scroll')[0].scrollHeight
@@ -66,6 +96,10 @@ var appchats = new Vue({
         socket.emit('chatHistory');
     }
 });
+
+/**
+ * recibe los msj enviados
+ */
 socket.on('recibirMensaje', msg => {
     if (msg.de1 === appchats.msg.de1 && msg.para === appchats.msg.para ||
         msg.para === appchats.msg.de1 && msg.de1 === appchats.msg.para) {
@@ -76,6 +110,9 @@ socket.on('recibirMensaje', msg => {
     }
     appchats.finalChat();
 });
+/**
+ * recibe el historial de los msj almacenados en la base de datos
+ */
 socket.on('chatHistory', msgs => {
     appchats.todosmsg = msgs;
 });

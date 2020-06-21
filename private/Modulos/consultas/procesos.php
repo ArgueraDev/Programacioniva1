@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * @author Roberto Arguera <usis008718@ugb.edu.sv>
+ */
+
 session_start();
 
 include('../../Config/Config.php');
@@ -11,7 +15,9 @@ if (isset($_GET['proceso']) && strlen($_GET['proceso']) > 0) {
 }
 $consulta->$proceso($_GET['consulta']);
 print_r(json_encode($consulta->respuesta));
-
+/**
+ * @class consulta
+ */
 class consulta
 {
     private $datos = array(), $db;
@@ -21,11 +27,18 @@ class consulta
     {
         $this->db = $db;
     }
+     /**
+     * @function recibirDatos recibe los datos de las consultas
+     * @param object $consulta representa los datos en si
+     */
     public function recibirDatos($consulta)
     {
         $this->datos = json_decode($consulta, true);
         $this->validar_datos();
     }
+    /**
+     * @function validar_datos los datos recibidos pasan a ser validados
+     */
     private function validar_datos()
     {
         if (empty(trim($this->datos['consulta']))) {
@@ -35,6 +48,9 @@ class consulta
         }
         $this->almacenar_consulta();
     }
+    /**
+     * @function almacenar_datos guardamos los datos en la base de datos
+     */
     private function almacenar_consulta()
     {
         if ($this->datos['accion'] === 'nuevo') {

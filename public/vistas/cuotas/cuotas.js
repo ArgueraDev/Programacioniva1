@@ -1,6 +1,15 @@
+/**
+ * @author Roberto Arguera <usis008718@ugb.edu.sv>
+ * @file perfil.js Visualizacion y edicion de perfil para los usuarios.
+ * @license MIT libre distribucion y modificacion para fines educativos.
+ * @instance objeto de instancia de vue.js
+ */
 Vue.component('v-select', VueSelect.VueSelect);
 
 var appcuota = new Vue({
+  /**
+   * @property el element del DOM a enlazar.
+   */
   el: '#cuotas',
   data: {
     cuota: {
@@ -55,6 +64,9 @@ var appcuota = new Vue({
     }
   },
   methods: {
+    /**
+     * @function calcularCuota con los datos ingresados hace el calculo de las cuotas.
+     */
     calcularCuota: function () {
       this.cuota.msg = "";
       if (this.cuota.monto == "") {
@@ -82,6 +94,12 @@ var appcuota = new Vue({
         alertify.warning("seleccione Prestamo");
       }
     },
+    /**
+     * @function calculo formula utilizada para realizar los calculos.
+     * @param {object} monto monto ingresado.
+     * @param {object} plazo plazo ingresado.
+     * @param {object} tasa tasa de interes ingresado.
+     */
     calculo: function (monto, plazo, tasa) {
       var coutaM, i, año, mon, i2, meses;
       i = tasa;
@@ -93,6 +111,9 @@ var appcuota = new Vue({
 
       return coutaM.toFixed(2);
     },
+    /**
+     * @function Limpiar limpia los campos del formulario.
+     */
     Limpiar: function () {
       this.cuota.monto = "";
       this.cuota.plazo = "";

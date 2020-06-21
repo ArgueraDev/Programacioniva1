@@ -1,4 +1,13 @@
+/**
+ * @author Roberto Arguera <usis008718@ugb.edu.sv>
+ * @file login.js Iniciar Sesion.
+ * @license MIT libre distribucion y modificacion para fines educativos.
+ * @instance objeto de instancia de vue.js
+ */
 var applogin = new Vue({
+  /**
+   * @property el element del DOM a enlazar.
+   */
   el: '#frm-login',
   data: {
     login: {
@@ -8,6 +17,9 @@ var applogin = new Vue({
     valor: ''
   },
   methods: {
+    /**
+     * @function iniciarSesion manda los datos obtenidos para validar el inicio de sesion.
+     */
     iniciarSesion: function () {
       fetch(`private/Modulos/login/procesos.php?proceso=recibirUsuario&login=${JSON.stringify(this.login)}`).then(resp => resp.json()).then(resp => {
         if (resp.msg === "Bienvenido") {
@@ -17,6 +29,9 @@ var applogin = new Vue({
         }
       });
     },
+    /**
+     * @function variable controla si el usuario ya a iniciado sesion para mandarlo a la pagina principal.
+     */
     variable: function () {
       fetch(`private/Modulos/login/procesos.php?proceso=verVariable&login=${this.valor}`).then(resp => resp.json()).then(resp => {
         if (resp.msg == 'regrese') {
@@ -29,7 +44,9 @@ var applogin = new Vue({
     this.variable();
   }
 });
-
+/**
+ * @function init cambia de ventana.
+ */
 function init() {
   $("#Registrar").click(function (e) {
     $(`#vistas`).load(`public/vistas/login/registrar.html`, function () {

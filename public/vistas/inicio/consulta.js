@@ -1,3 +1,6 @@
+/**
+ * diseño con vue
+ */
 Vue.component('consulta-card', {
     props: ['contenido', 'llave', 'nombre', 'fecha'],
     template: `
@@ -14,7 +17,16 @@ Vue.component('consulta-card', {
     `
 })
 
+/**
+ * @author Roberto Arguera <usis008718@ugb.edu.sv>
+ * @file consulta.js area de consultas o peticiones.
+ * @license MIT libre distribucion y modificacion para fines educativos.
+ * @instance objeto de instancia de vue.js
+ */
 var appconsulta = new Vue({
+    /**
+     * @property el element del DOM a enlazar.
+     */
     el: '#consultas',
     data: {
         consultas: {
@@ -28,6 +40,9 @@ var appconsulta = new Vue({
         valor2: "",
     },
     methods: {
+        /**
+         * @function guardarConsulta almacena en la base de datos las consultas realizada por los usuarios.
+         */
         guardarConsulta: function () {
             fetch(`private/Modulos/consultas/procesos.php?proceso=recibirDatos&consulta=${JSON.stringify(this.consultas)}`).then(resp => resp.json()).then(resp => {
                 if (resp.msg != 'Envio Exitoso') {
@@ -39,16 +54,25 @@ var appconsulta = new Vue({
                 }
             });
         },
+        /**
+         * @function verConsultas muestra las consultas realizadas por los usuarios.
+         */
         verConsultas: function () {
             fetch(`private/Modulos/consultas/procesos.php?proceso=verConsultas&consulta=${this.valor2}`).then(resp => resp.json()).then(resp => {
                 this.valores = resp;
             });
         },
+        /**
+         * @function limpiezaConsulta limpia los campos de la consulta.
+         */
         limpiezaConsulta: function () {
             this.consultas.idConsulta = 0;
             this.consultas.consulta = '';
             this.consultas.accion = 'nuevo';
         },
+        /**
+         * @function verIdLogin obtiene el id del usuario activo.
+         */
         verIdLogin: function () {
             fetch(`private/Modulos/consultas/procesos.php?proceso=idLogin&consulta=""`).then(resp => resp.json()).then(resp => {
                 this.consultas.idLogin = resp[0].idLogin;
@@ -60,7 +84,11 @@ var appconsulta = new Vue({
         this.verConsultas();
     }
 });
+
 var barra = new Vue({
+    /**
+     * @property el element del DOM a enlazar.
+     */
     el: '#barra',
     data: {
         Usuario: {
@@ -70,11 +98,17 @@ var barra = new Vue({
         }
     },
     methods: {
+        /**
+         * @function cerrar cierra sesion iniciada.
+         */
         cerrar: function () {
             fetch(`private/Modulos/consultas/procesos.php?proceso=cerrar&consulta=""`).then(resp => resp.json()).then(resp => {
                 location.href = "/programacioniva1";
             });
         },
+        /**
+         * @function variable controla si el usuario esta activo y sino lo regresa al login.
+         */
         variable: function () {
             fetch(`private/Modulos/consultas/procesos.php?proceso=verVariable&consulta=""`).then(resp => resp.json()).then(resp => {
                 if (resp.msg == 'Registrese') {
@@ -82,6 +116,9 @@ var barra = new Vue({
                 }
             });
         },
+        /**
+         * @function usuario obtiene los datos del usuario activo.
+         */
         usuario: function () {
             fetch(`private/Modulos/consultas/procesos.php?proceso=idLogin&consulta=""`).then(resp => resp.json()).then(resp => {
                 this.Usuario.idLogin = resp[0].idLogin;
@@ -96,6 +133,9 @@ var barra = new Vue({
                 }
             });
         },
+        /**
+         * @function acercaDe Muestra informacion acerca de la app.
+         */
         acercaDe() {
             Swal.fire({
                 html: '<iframe src="public/vistas/terminos/informacion.html" height="500"></iframe>'

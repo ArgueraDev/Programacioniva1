@@ -1,4 +1,13 @@
+/**
+ * @author Roberto Arguera <usis008718@ugb.edu.sv>
+ * @file perfil.js Visualizacion y edicion de perfil para los usuarios.
+ * @license MIT libre distribucion y modificacion para fines educativos.
+ * @instance objeto de instancia de vue.js
+ */
 var appPerfil = new Vue({
+    /**
+     * @property el element del DOM a enlazar.
+     */
     el: '#frm-perfil',
     data: {
         perfil: {
@@ -11,6 +20,9 @@ var appPerfil = new Vue({
         }
     },
     methods: {
+        /**
+         * @function Editar funcion para habilitar o deshabilitar los campos de edicion del perfil.
+         */
         Editar: function () {
             if (document.getElementById("editar").value === "Editar") {
                 document.getElementById("editar").value = "Actualizar";
@@ -27,6 +39,9 @@ var appPerfil = new Vue({
                 this.modificar();
             }
         },
+        /**
+         * @function modificar funcion para guardar los datos actualizar los datos del perfil.
+         */
         modificar: function () {
             console.log(this.perfil);
             fetch(`private/Modulos/login/procesos.php?proceso=Modificar&login=${JSON.stringify(this.perfil)}`).then(resp => resp.json()).then(resp => {
@@ -37,12 +52,19 @@ var appPerfil = new Vue({
                 }
             });
         },
+        /**
+         * @function verIdLogin funcion para mostrar los datos del usuario activo.
+         */
         verIdLogin: function () {
             fetch(`private/Modulos/consultas/procesos.php?proceso=idLogin&consulta=""`).then(resp => resp.json()).then(resp => {
                 this.perfil = resp[0];
                 document.getElementById('img-preview').src = resp[0].imagen;
             });
         },
+        /**
+         * @function obtenerimagen funcion para guardar imagen de perfil.
+         *  @param {object} e dato del archivo seleccionado.
+         */
         obtenerimagen(e) {
             var respuesta = null;
             let file = e.target.files[0];
@@ -66,6 +88,10 @@ var appPerfil = new Vue({
             this.cargar(file);
 
         },
+        /**
+         * @function cargar funcion para mostrar la imagen de perfil.
+         * @param {object} file la imagen seleccionada para mostrar.
+         */
         cargar(file) {
             let reader = new FileReader();
             reader.onload = (e) => {

@@ -1,3 +1,13 @@
+
+/**
+ * @author Roberto Arguera <usis008718@ugb.edu.sv>
+ * @file app.js cambio de ventana del login.
+ * @license MIT libre distribucion y modificacion para fines educativos.
+ * @instance objeto de instancia de vue.js
+ */
+/**
+ * @function init muestra la ventana segun el items seleccionado en el login
+ */
 function init() {
     $("[class*='mostrar']").click(function (e) {
         let modulo = $(this).data("modulo"),
