@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 /**
@@ -27,6 +28,7 @@ class login
     {
         $this->db = $db;
     }
+
     /**
      * @function recibirDatos recibe los datos del registro
      * @param object $login representa los datos en si
@@ -36,6 +38,7 @@ class login
         $this->datos = json_decode($login, true);
         $this->validar_datos();
     }
+
     /**
      * @function validar_datos valida los datos recibidos para verificar si son correctos
      */
@@ -57,6 +60,7 @@ class login
             $this->almacenar_registro();
         }
     }
+
     /**
      * @function almacenar_registro guardar los datos del nuevo usuario
      */
@@ -75,6 +79,7 @@ class login
             $this->respuesta['msg'] = 'Registro insertado correctamente';
         }
     }
+
     /**
      * @function recibirUsuario recibe los datos para verificar sesion
      * @param object $login representa los datos en si
@@ -84,6 +89,7 @@ class login
         $this->datos = json_decode($login, true);
         $this->validar_Us();
     }
+
     /**
      * @function validar_Us compruba que el correo y contraseña coinsidan para iniciar sesion
      */
@@ -99,13 +105,14 @@ class login
             $this->db->consultas('select * from login where correo="' . $this->datos['correo'] . '" and contraseña="' . $this->datos['contraseña'] . '" limit 1');
             $this->respuesta = $this->db->obtener_datos();
             if (empty($this->respuesta)) {
-                return $this->respuesta['msg'] = 'Correo y Contraseña no coinciden';
+                $this->respuesta['msg'] = 'Correo y Contraseña no coinciden';
             } else {
                 $_SESSION['idLogin'] = $this->respuesta[0]['idLogin'];
-                return $this->respuesta['msg'] = 'Bienvenido';
+                $this->respuesta['msg'] = 'Bienvenido';
             }
         }
     }
+
     /**
      * @function recibirCorreo recibe los datos para restablecer contraseña
      * @param mixed $correo representa el correo
@@ -115,6 +122,7 @@ class login
         $this->datos = json_decode($correo, true);
         $this->validar_correo();
     }
+
     /**
      * @function validar_correo valida el correo si coinside para proceder a guardar la nueva contraseña
      */
@@ -134,6 +142,7 @@ class login
             $this->actualizar_contraseña();
         }
     }
+
     /**
      * @function actualizar_contraseña cambia la contraseña del usuario
      */
@@ -149,6 +158,7 @@ class login
             $this->respuesta['msg'] = 'Contraseña Restablecida';
         }
     }
+
     /**
      * @function verVariable controla que el usuario no se salte el inicio de sesion
      */
@@ -160,6 +170,7 @@ class login
             $this->respuesta['msg'] = 'regrese';
         }
     }
+
     /**
      * @function cerrar cierra el inicio de sesion
      */
@@ -167,6 +178,7 @@ class login
     {
         session_destroy();
     }
+
     /**
      * @function Modificar recibe los datos para modificar los datos del usuario
      * @param mixed $login representa el correo
@@ -176,6 +188,7 @@ class login
         $this->datos = json_decode($login, true);
         $this->validar_modificacion();
     }
+
     /**
      * @function validar_modificacion valida los datos ingresados
      */
@@ -189,6 +202,7 @@ class login
             $this->actualizar_usuario();
         }
     }
+
     /**
      * @function aztualizar_usuario actualiza los datos ingresados del usuario
      */
@@ -203,6 +217,7 @@ class login
                 ');
         $this->respuesta['msg'] = 'Usuario Actualizado';
     }
+    
     /**
      * @function usuario muestra todos los usuarios registrados
      */

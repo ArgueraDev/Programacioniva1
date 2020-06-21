@@ -17,9 +17,6 @@ var applogin = new Vue({
     valor: ''
   },
   methods: {
-    /**
-     * @function iniciarSesion manda los datos obtenidos para validar el inicio de sesion.
-     */
     iniciarSesion: function () {
       fetch(`private/Modulos/login/procesos.php?proceso=recibirUsuario&login=${JSON.stringify(this.login)}`).then(resp => resp.json()).then(resp => {
         if (resp.msg === "Bienvenido") {
@@ -29,9 +26,6 @@ var applogin = new Vue({
         }
       });
     },
-    /**
-     * @function variable controla si el usuario ya a iniciado sesion para mandarlo a la pagina principal.
-     */
     variable: function () {
       fetch(`private/Modulos/login/procesos.php?proceso=verVariable&login=${this.valor}`).then(resp => resp.json()).then(resp => {
         if (resp.msg == 'regrese') {
