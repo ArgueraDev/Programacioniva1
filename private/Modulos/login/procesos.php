@@ -1,8 +1,9 @@
 <?php
+session_start();
+
 /**
  * @author Roberto Arguera <usis008718@ugb.edu.sv>
  */
-session_start();
 
 include('../../Config/Config.php');
 $login = new login($conexion);
@@ -76,7 +77,7 @@ class login
     }
     /**
      * @function recibirUsuario recibe los datos para verificar sesion
-     * @param mixed $login representa los datos en si
+     * @param object $login representa los datos en si
      */
     public function recibirUsuario($login)
     {
@@ -98,10 +99,10 @@ class login
             $this->db->consultas('select * from login where correo="' . $this->datos['correo'] . '" and contraseña="' . $this->datos['contraseña'] . '" limit 1');
             $this->respuesta = $this->db->obtener_datos();
             if (empty($this->respuesta)) {
-                $this->respuesta['msg'] = 'Correo y Contraseña no coinciden';
+                return $this->respuesta['msg'] = 'Correo y Contraseña no coinciden';
             } else {
                 $_SESSION['idLogin'] = $this->respuesta[0]['idLogin'];
-                $this->respuesta['msg'] = 'Bienvenido';
+                return $this->respuesta['msg'] = 'Bienvenido';
             }
         }
     }
