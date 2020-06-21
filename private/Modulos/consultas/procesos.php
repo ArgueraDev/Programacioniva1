@@ -64,6 +64,9 @@ class consulta
             $this->respuesta['msg'] = 'Envio Exitoso';
         }
     }
+    /**
+     * @function verConsultas muestra todas las consultas o peticiones que lo usuarios han realizado
+     */
     public function verConsultas($valor = '')
     {
         $this->db->consultas('
@@ -72,7 +75,9 @@ class consulta
         ');
         return $this->respuesta = $this->db->obtener_datos();
     }
-
+    /**
+     * @function verVariable examina si el usuario esta activo o no
+     */
     public function verVariable($valor = '')
     {
         if (isset($_SESSION['idLogin'])) {
@@ -81,11 +86,16 @@ class consulta
             $this->respuesta['msg'] = 'Registrese';
         }
     }
+    /**
+     * @function cerrar Cierra sesion del usuario
+     */
     public function cerrar($valor = '')
     {
         session_destroy();
     }
-
+    /**
+     * @function idLogin obtenemos el id del usuario activo
+     */
     public function idLogin($valor = '')
     {
         $this->db->consultas('select * from login where idLogin ="' . $_SESSION['idLogin'] . '"');

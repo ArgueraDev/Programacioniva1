@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Roberto Arguera <usis008718@ugb.edu.sv>
+ */
 include('../../Config/Config.php');
 $moderar = new moderar($conexion);
 
@@ -9,6 +12,9 @@ if (isset($_GET['proceso']) && strlen($_GET['proceso']) > 0) {
 $moderar->$proceso($_GET['moderar']);
 print_r(json_encode($moderar->respuesta));
 
+/**
+ * @class moderar
+ */
 class moderar
 {
     private $datos = array(), $db;
@@ -18,11 +24,18 @@ class moderar
     {
         $this->db = $db;
     }
+     /**
+     * @function recibirDatos recibe los datos de la informacion sugerida por los usuarios
+     * @param object $moderar representa los datos en si
+     */
     public function recibirDatos($moderar)
     {
         $this->datos = json_decode($moderar, true);
         $this->validar_datos();
     }
+     /**
+     * @function validar_datos valida los datos recibidos
+     */
     private function validar_datos()
     {
         if (empty(trim($this->datos['titulo']))) {
@@ -35,6 +48,9 @@ class moderar
             $this->almacenar_registro();
         }
     }
+     /**
+     * @function almacenar_registro guarda los datos en la base de datos
+     */
     private function almacenar_registro()
     {
         if ($this->respuesta['msg'] === 'correcto') {
@@ -53,6 +69,9 @@ class moderar
             }
         }
     }
+     /**
+     * @function VerContribucion muestra todas las contribuciones hechas por los usuarios antes de publicar
+     */
     public function verContribucion()
     {
         $this->db->consultas('select login.idLogin, moderar.idModerar, login.nombre, moderar.titulo, moderar.contenido, moderar.tipo,
@@ -60,7 +79,10 @@ class moderar
         from login, moderar where login.idLogin = moderar.idLogin');
         return $this->respuesta = $this->db->obtener_datos();
     }
-
+     /**
+     * @function Eliminar recibe el id de la informacion a eliminar
+     * @param int $idModerar representa el valor a eliminar
+     */
     public function Eliminar($idModerar = 0)
     {
         $this->db->consultas('delete moderar from moderar where idModerar ="' . $idModerar . '"');

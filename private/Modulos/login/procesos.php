@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @author Roberto Arguera <usis008718@ugb.edu.sv>
+ */
 session_start();
 
 include('../../Config/Config.php');
@@ -12,6 +14,9 @@ if (isset($_GET['proceso']) && strlen($_GET['proceso']) > 0) {
 $login->$proceso($_GET['login']);
 print_r(json_encode($login->respuesta));
 
+/**
+ * @class login 
+ */
 class login
 {
     private $datos = array(), $db;
@@ -21,11 +26,18 @@ class login
     {
         $this->db = $db;
     }
+    /**
+     * @function recibirDatos recibe los datos del registro
+     * @param object $login representa los datos en si
+     */
     public function recibirDatos($login)
     {
         $this->datos = json_decode($login, true);
         $this->validar_datos();
     }
+    /**
+     * @function validar_datos valida los datos recibidos para verificar si son correctos
+     */
     private function validar_datos()
     {
         $this->db->consultas('select * from login where correo="' . $this->datos['correo'] . '" limit 1');
@@ -44,6 +56,9 @@ class login
             $this->almacenar_registro();
         }
     }
+    /**
+     * @function almacenar_registro guardar los datos del nuevo usuario
+     */
     private function almacenar_registro()
     {
         if ($this->datos['accion'] === 'nuevo') {
@@ -59,11 +74,18 @@ class login
             $this->respuesta['msg'] = 'Registro insertado correctamente';
         }
     }
+    /**
+     * @function recibirUsuario recibe los datos para verificar sesion
+     * @param mixed $login representa los datos en si
+     */
     public function recibirUsuario($login)
     {
         $this->datos = json_decode($login, true);
         $this->validar_Us();
     }
+    /**
+     * @function validar_Us compruba que el correo y contraseña coinsidan para iniciar sesion
+     */
     private function validar_Us()
     {
         if (empty(trim($this->datos['correo']))) {
@@ -83,12 +105,18 @@ class login
             }
         }
     }
-
+    /**
+     * @function recibirCorreo recibe los datos para restablecer contraseña
+     * @param mixed $correo representa el correo
+     */
     public function recibirCorreo($correo)
     {
         $this->datos = json_decode($correo, true);
         $this->validar_correo();
     }
+    /**
+     * @function validar_correo valida el correo si coinside para proceder a guardar la nueva contraseña
+     */
     private function validar_correo()
     {
         $this->db->consultas('select * from login where correo="' . $this->datos['correo'] . '" limit 1');
@@ -105,6 +133,9 @@ class login
             $this->actualizar_contraseña();
         }
     }
+    /**
+     * @function actualizar_contraseña cambia la contraseña del usuario
+     */
     private function actualizar_contraseña()
     {
         if ($this->datos['accion'] === 'modificar') {
@@ -117,7 +148,9 @@ class login
             $this->respuesta['msg'] = 'Contraseña Restablecida';
         }
     }
-
+    /**
+     * @function verVariable controla que el usuario no se salte el inicio de sesion
+     */
     public function verVariable($valor = '')
     {
         if (!isset($_SESSION['idLogin'])) {
@@ -126,16 +159,25 @@ class login
             $this->respuesta['msg'] = 'regrese';
         }
     }
+    /**
+     * @function cerrar cierra el inicio de sesion
+     */
     public function cerrar($valor = '')
     {
         session_destroy();
     }
-
+    /**
+     * @function Modificar recibe los datos para modificar los datos del usuario
+     * @param mixed $login representa el correo
+     */
     public function Modificar($login)
     {
         $this->datos = json_decode($login, true);
         $this->validar_modificacion();
     }
+    /**
+     * @function validar_modificacion valida los datos ingresados
+     */
     private function validar_modificacion()
     {
         if (empty(trim($this->datos['nombre']))) {
@@ -146,7 +188,9 @@ class login
             $this->actualizar_usuario();
         }
     }
-
+    /**
+     * @function aztualizar_usuario actualiza los datos ingresados del usuario
+     */
     private function actualizar_usuario()
     {
         $this->db->consultas('
@@ -158,7 +202,9 @@ class login
                 ');
         $this->respuesta['msg'] = 'Usuario Actualizado';
     }
-
+    /**
+     * @function usuario muestra todos los usuarios registrados
+     */
     public function usuarios()
     {
         $this->db->consultas('select * from login');

@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author Roberto Arguera <usis008718@ugb.edu.sv>
+ */
 include('../../Config/Config.php');
 $informacion = new informacion($conexion);
 
@@ -9,6 +12,9 @@ if (isset($_GET['proceso']) && strlen($_GET['proceso']) > 0) {
 $informacion->$proceso($_GET['informacion']);
 print_r(json_encode($informacion->respuesta));
 
+/**
+ * @class consulta
+ */
 class informacion
 {
     private $datos = array(), $db;
@@ -18,11 +24,21 @@ class informacion
     {
         $this->db = $db;
     }
+    /**
+     * @function Agregar obtiene el id de la informacion nueva a agregar
+     * @param object $idModerar representa el dato
+     */
     public function Agregar($idModerar)
     {
+        /**
+         * busca los datos a transferir
+         */
         $this->db->consultas('select * from moderar where idModerar="' . $idModerar . '"');
         $this->respuesta = $this->db->obtener_datos();
         $Da = $this->respuesta;
+        /** 
+         * los datos obtenidos pasan a ser publicos guardandose en la base de datos
+        */
         $this->db->consultas('
                     INSERT INTO informacion (titulo,contenido,tipo,imagen) VALUES(
                         "' . $Da[0]['titulo'] . '",
@@ -58,6 +74,10 @@ class informacion
             }
         }
     }
+    /**
+     * @function buscarInformacion recibe un parametro para buscar la informacion que se le pide
+     * @param object $valor el dato a buscar
+     */
     public function buscarInformacion($valor = '')
     {
         $this->respuesta = [];
@@ -66,6 +86,10 @@ class informacion
         ORDER BY idInformacion DESC');
         return $this->respuesta = $this->db->obtener_datos();
     }
+    /**
+     * @function buscarInformacion recibe un parametro para buscar la informacion que se le pide
+     * @param object $valor el dato a buscar
+     */
     public function buscarbancaria($valor = '')
     {
         $this->respuesta = [];
@@ -74,6 +98,10 @@ class informacion
         ORDER BY idInformacion DESC');
         return $this->respuesta = $this->db->obtener_datos();
     }
+    /**
+     * @function buscarInformacion recibe un parametro para buscar la informacion que se le pide
+     * @param object $valor el dato a buscar
+     */
     public function buscardiccionario($valor = '')
     {
         $this->respuesta = [];

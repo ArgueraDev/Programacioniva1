@@ -1,4 +1,11 @@
-<?php
+<?
+/**
+ * @author Roberto Arguera <usis008718@ugb.edu.sv>
+ */
+
+/** 
+ * Clase principal de conexion a la base de datos desde PHP -> MySQL
+ */
 class Conexion{
     private $conexion='', $result='';
 
